@@ -1,3 +1,8 @@
+
+/**
+ * @author Cullen Sturdivant
+ * @version 1.0, 09/19/2017
+ */
 package storage.packages;
 
 public class Package {
