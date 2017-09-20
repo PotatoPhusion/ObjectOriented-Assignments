@@ -29,30 +29,29 @@ public class Main {
         catch (FileNotFoundException ex) {
             System.out.println("The file could not be accessed");
         }
-
-        //FileReader fr = new FileReader("packages.txt");
-        //canner inFile = new Scanner(fr);
-
+            
+        
             //Read one line
             String line = inFile.nextLine();
 
            //Split the line into words, using the space character as a separator
            String[] words = line.split(" ");
 
-
-
+           
+           //LITERALLY JUST COMMENTED STUFF OUT I DID NOT NEED. KEK
     
-            String tracking = words[0];
+            /*String trackingNum = words[0];
             String type = words[1];
             String specif = words[2];
             String mailingClass = words[3];
             Float weight =Float.parseFloat(words[4]);
             int volume = Integer.parseInt(words[5]);
+            */
 
             //System.out.println("Tracking: "+tracking+"| Type : "+type+"| Spefic: "+specif);
             //System.out.print("Class: "+mailingClass+"| Weight: "+weight+"| Volume: " +volume);
 
-            inFile.close(); //Close file
+            //inFile.close(); //Close file
 
 
 
@@ -101,19 +100,20 @@ public class Main {
                 parcels.addPackage(new Package());
                 break;
             case (3):
-                //parcels.deletePackage();
+                parcels.deletePackage();   
                 break;
             case (4):
-                //parcels.searchPackages();
+                parcels.searchPackages();
                 break;
             case (5):
-                //parcels.showByWeightRange();
+                parcels.showByWeightRange();
                 break;
             default:
-                //exit();
+                exit();
                 break;
             }
         }
+        inFile.close(); //Close file
     }
 
    
