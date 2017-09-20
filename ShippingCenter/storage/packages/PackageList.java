@@ -46,11 +46,18 @@ public class PackageList {
     }
 
     public void deletePackage(String trackingNum) {
-        //packages.remove(pack);
+        for (Package pack : packages) {
+            if (pack.getTrackingNumber().equals(trackingNum)) {
+                packages.remove(pack);
+                System.out.println("Package removed.\n");
+                return;
+            }
+        }
+        System.out.println("Package not found.\n");
     }
 
     public void deletePackage(Package pack) {
-        packages.remove(pack);
+        //packages.remove(pack);
     }
 
     /**
@@ -66,7 +73,7 @@ public class PackageList {
                 return pack;
             }
         }
-        return new Package();
+        return null;
     }
 
     public void searchPackages(Package pack) {
@@ -81,7 +88,7 @@ public class PackageList {
         for (Package pack : packages) {
             if (pack.getWeight() >= min && pack.getWeight() <= max){
                 System.out.printf("| %10s" + divider, pack.getTrackingNumber());
-                System.out.printf("%4s" + divider, pack.getType());
+                System.out.printf("%8s" + divider, pack.getType());
                 System.out.printf("%13s" + divider, pack.getSpecification());
                 System.out.printf("%11s" + divider, pack.getMailingClass());
                 System.out.printf("%10.02f" + divider, pack.getWeight());
