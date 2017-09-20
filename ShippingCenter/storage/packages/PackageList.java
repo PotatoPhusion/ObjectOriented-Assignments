@@ -1,6 +1,9 @@
-package storage.packages;
+/**
+ * @author Cullen Sturdivant
+ * @version 1.0, 09/19/2017
+ */
 
- 
+package storage.packages;
 
 import java.util.Scanner;
 import java.util.ArrayList;
@@ -16,14 +19,25 @@ public class PackageList {
 
     private ArrayList<Package> packages;
 
+    /**
+     * Generates a new PackageList.
+     */
     PackageList() {
         packages = new ArrayList<Package>();
     }
 
+    /**
+     * Generates a new PackageList with a given size.
+     * 
+     * @param size the initial size of the package list.
+     */
     PackageList(int size) {
         packages = new ArrayList<Package>(size);
     }
-
+    
+    /**
+     * Shows all of the packages in the current PackageList.
+     */
     public void showAll() {
         System.out.println(line);
         System.out.println(header);
@@ -41,10 +55,21 @@ public class PackageList {
         System.out.println(line);
     }
 
+    /**
+     * Adds a package to the PackageList.
+     * 
+     * @param Pack is the package to be added to the list.
+     */
     public void addPackage(Package pack) {
         packages.add(pack);
     }
 
+    /**
+     * Deletes a package from the PackageList based on its tracking number.
+     * 
+     * @param trackingNum the tracking number of the package you
+     * want to delete.
+     */
     public void deletePackage(String trackingNum) {
         for (Package pack : packages) {
             if (pack.getTrackingNumber().equals(trackingNum)) {
@@ -63,9 +88,9 @@ public class PackageList {
     /**
      * Searches for a package based on its tracking number.
      *
-     * @param trackingNum The tracking number you want to search by.
-     * @return The corresponding package if found or a new null Package if
-     * not found.
+     * @param trackingNum the tracking number you want to search by.
+     * 
+     * @return The corresponding package if found or null if not found.
      */
     public Package searchPackages(String trackingNum) {
         for (Package pack : packages) {
@@ -80,6 +105,12 @@ public class PackageList {
 
     }
 
+    /**
+     * Shows all packages within a given weight range.
+     * 
+     * @param min the lower bound of package weights.
+     * @param max the upper bound of package weights.
+     */
     public void showByWeightRange(float min, float max) {
         System.out.println(line);
         System.out.println(header);
