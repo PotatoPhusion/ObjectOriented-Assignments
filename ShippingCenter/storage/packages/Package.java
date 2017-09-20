@@ -47,9 +47,9 @@ public class Package {
         this.weight = weight;
         this.volume = volume;
     }
-
+    
     /**
-     * Getter for the Tracking Number.
+     * Accessor for the Tracking Number.
      * 
      * @return the tracking number of a package.
      */

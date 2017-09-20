@@ -1,13 +1,13 @@
 package storage.packages;
 
- 
-
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.util.Scanner;
 
 public class Main {
 // intro to program
+
+    private static final int TRACKING_NUM_LENGTH = 5;
 
     public static void main(String[] args) {
 
@@ -18,40 +18,80 @@ public class Main {
         Scanner userInput = new Scanner(System.in);
 
 
+        // *********************************
+        // Set up the file Reader
+        // *********************************
         FileReader fr;
         Scanner inFile = null;
 
         try {
-            
             fr = new FileReader("packages.txt");
             inFile = new Scanner(fr);
+            
+            // *********************************
+            // Read packages in from file
+            // *********************************
+            while (inFile.hasNextLine()) {
+                
+                boolean failFlag = false;
+                
+                String tempTN = inFile.next();
+                
+                if (!verifyTrackingNumber(tempTN, TRACKING_NUM_LENGTH)) {
+                    System.out.println("Found invalid tracking number. Skipping package.");
+                    
+                    inFile.nextLine();
+                    failFlag = true;
+                }
+                
+                if (!failFlag) {
+                    String tempType = inFile.next();
+                
+                    if (!verifyType(tempType)) {
+                        
+                    }
+                }
+                
+                if (!failFlag) {
+                    String tempSpec = inFile.next();
+                    
+                    if (!verifySpecification(tempSpec)) {
+                        
+                    }
+                }
+                
+                if (!failFlag) {
+                    String tempMC = inFile.next();
+                    
+                    if (!verifyMailingClass(tempMC)) {
+                        
+                    }
+                }
+                
+                if (!failFlag) {
+                    if (inFile.hasNextDouble()) {
+                        float tempWeight = (float)inFile.nextDouble();
+                    }
+                }
+                
+                if (!failFlag) {
+                    if (inFile.hasNextInt()) {
+                        int tempVolume = inFile.nextInt();
+                        
+                        inFile.nextLine(); // nextInt does not read new line characters
+                    }
+                }
+            }
         }
         catch (FileNotFoundException ex) {
-            System.out.println("The file could not be accessed");
+            System.err.println("The file could not be accessed");
+        }
+        catch (Exception e) {
+            System.err.println("An unknown error occurred");
+            e.printStackTrace();
         }
             
         
-            //Read one line
-            String line = inFile.nextLine();
-
-           //Split the line into words, using the space character as a separator
-           String[] words = line.split(" ");
-
-           
-           //LITERALLY JUST COMMENTED STUFF OUT I DID NOT NEED. KEK
-    
-            /*String trackingNum = words[0];
-            String type = words[1];
-            String specif = words[2];
-            String mailingClass = words[3];
-            Float weight =Float.parseFloat(words[4]);
-            int volume = Integer.parseInt(words[5]);
-            */
-
-            //System.out.println("Tracking: "+tracking+"| Type : "+type+"| Spefic: "+specif);
-            //System.out.print("Class: "+mailingClass+"| Weight: "+weight+"| Volume: " +volume);
-
-            //inFile.close(); //Close file
 
 
 
@@ -83,12 +123,12 @@ public class Main {
                         inMenu = false;
                     }
                     else {
-                        System.err.println(input + " is not a menu option");
+                        System.out.println(input + " is not a menu option");
                     }
                 }
                 else {
                     String badInput = userInput.nextLine();
-                    System.err.println(badInput + " is not a menu option");
+                    System.out.println(badInput + " is not a menu option");
                 }
             }
 
@@ -100,13 +140,13 @@ public class Main {
                 parcels.addPackage(new Package());
                 break;
             case (3):
-                parcels.deletePackage();   
+                parcels.deletePackage(new Package());   
                 break;
             case (4):
-                parcels.searchPackages();
+                parcels.searchPackages(new Package());
                 break;
             case (5):
-                parcels.showByWeightRange();
+                parcels.showByWeightRange(0f, 1f);
                 break;
             default:
                 exit();
@@ -115,6 +155,39 @@ public class Main {
         }
         inFile.close(); //Close file
     }
-
+    
+    /**
+     * Verifies if the supplied tracking number is of a given length.
+     * 
+     * @param trackingNum the tracking number to be verified.
+     * @param length the desired length of the tracking number.
+     * 
+     * @return True if tracking number length matches <b>length</b>
+     * and false otherwise.
+     */
+    private static boolean verifyTrackingNumber(String trackingNum, int length) {
+        if (trackingNum.length() == length) {
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+    
+    private static boolean verifyType(String type) {
+        return true;
+    }
+    
+    private static boolean verifySpecification(String spec) {
+        return true;
+    }
+    
+    private static boolean verifyMailingClass(String mc) {
+        return true;
+    }
+    
+    private static void exit() {
+        
+    }
    
 }
