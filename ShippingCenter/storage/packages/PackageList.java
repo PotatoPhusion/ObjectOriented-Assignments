@@ -70,19 +70,19 @@ public class PackageList {
      * @param trackingNum the tracking number of the package you
      * want to delete.
      */
-    public void deletePackage(String trackingNum) {
+    public boolean deletePackage(String trackingNum) {
         for (Package pack : packages) {
             if (pack.getTrackingNumber().equals(trackingNum)) {
                 packages.remove(pack);
-                System.out.println("Package removed.\n");
-                return;
+                return true;
             }
         }
-        System.out.println("Package not found.\n");
+        return false;
     }
 
-    public void deletePackage(Package pack) {
+    public boolean deletePackage(Package pack) {
         //packages.remove(pack);
+        return false;
     }
 
     /**
@@ -90,19 +90,21 @@ public class PackageList {
      *
      * @param trackingNum the tracking number you want to search by.
      * 
-     * @return The corresponding package if found or null if not found.
+     * @return The index of the corresponding package if found or -1 if not found.
      */
-    public Package searchPackages(String trackingNum) {
+    public int searchPackages(String trackingNum) {
+        int i = 0;
         for (Package pack : packages) {
             if (pack.getTrackingNumber().equals(trackingNum)) {
-                return pack;
+                return i;
             }
+            i++;
         }
-        return null;
+        return -1;
     }
 
-    public void searchPackages(Package pack) {
-
+    public int searchPackages(Package pack) {
+        return -1;
     }
 
     /**
@@ -118,6 +120,31 @@ public class PackageList {
 
         for (Package pack : packages) {
             if (pack.getWeight() >= min && pack.getWeight() <= max){
+                System.out.printf("| %10s" + divider, pack.getTrackingNumber());
+                System.out.printf("%8s" + divider, pack.getType());
+                System.out.printf("%13s" + divider, pack.getSpecification());
+                System.out.printf("%11s" + divider, pack.getMailingClass());
+                System.out.printf("%10.02f" + divider, pack.getWeight());
+                System.out.printf("%6d" + " |%n", pack.getVolume());
+            }
+        }
+
+        System.out.println(line);
+    }
+    
+    /**
+     * Shows all packages within a given weight range.
+     * 
+     * @param min the lower bound of package weights.
+     * @param max the upper bound of package weights.
+     */
+    public void showByWeightRange(double min, double max) {
+        System.out.println(line);
+        System.out.println(header);
+        System.out.println(line);
+
+        for (Package pack : packages) {
+            if (pack.getWeight() >= (float)min && pack.getWeight() <= (float)max){
                 System.out.printf("| %10s" + divider, pack.getTrackingNumber());
                 System.out.printf("%8s" + divider, pack.getType());
                 System.out.printf("%13s" + divider, pack.getSpecification());

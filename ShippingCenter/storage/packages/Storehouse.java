@@ -178,13 +178,66 @@ public class Storehouse {
                 parcels.addPackage(p);
                 break;
             case (3):
-                parcels.deletePackage(new Package());   
+                String d = deletePrompt();
+                boolean flag = parcels.deletePackage(d);
+                
+                if (flag) {
+                    System.out.println("Package removed\n");
+                }
+                else {
+                    System.out.println("Could not remove package");
+                }
+                
                 break;
             case (4):
-                parcels.searchPackages(new Package());
+                String s = searchPrompt();
+                int index = parcels.searchPackages(s);
+                
+                if (index == -1) {
+                    System.out.println("Could not find package with tracking number " + s);
+                }
+                else {
+                    System.out.println("Package found at location " + index);
+                }
+                
                 break;
             case (5):
-                parcels.showByWeightRange(0f, 1f);
+                boolean success = false;
+                double min = 0;
+                double max = 1;
+                while (!success) {
+                    System.out.println("Enter the minimum bound for the weight range:");
+                    
+                    if (!userInput.hasNextDouble()) {
+                        System.out.println("That is not a valid input");
+                        userInput.nextLine();
+                    }
+                    else {
+                        min = userInput.nextDouble();
+                        success = true;
+                    }
+                }
+                
+                while (!success) {
+                    System.out.println("Enter the minimum bound for the weight range:");
+                    
+                    if (!userInput.hasNextDouble()) {
+                        System.out.println("That is not a valid input");
+                        userInput.nextLine();
+                    }
+                    else {
+                        max = userInput.nextDouble();
+                        
+                        if (max <= min) {
+                            System.out.println("Max value cannot be smaller than min value");
+                        }
+                        else {
+                            success = true;
+                        }
+                    }
+                }
+                
+                parcels.showByWeightRange(min, max);
                 break;
             default:
                 exit();
@@ -222,12 +275,17 @@ public class Storehouse {
     }
     
     private static boolean verifySpecification(String spec) {
-        return true;
+        for (Specification specify : Specification.values()) {
+            if (spec.equals(specify.getValue())) {
+                return true;
+            }
+        }
+        return false;
     }
     
     private static boolean verifyMailingClass(String mc) {
-        for (MailingClass mc : MailingClass.values()) {
-            if (type.equals(mc.getValue())) {
+        for (MailingClass mailClass : MailingClass.values()) {
+            if (mc.equals(mailClass.getValue())) {
                 return true;
             }
         }
@@ -327,7 +385,46 @@ public class Storehouse {
         }
         return new Package(tn, type, spec, mc, w, v);
     }
+    
+    private static String deletePrompt() {
+        boolean success = false;
+        String tn = null;
+        Scanner sc = new Scanner(System.in);
         
+        while (!success) {
+            
+            System.out.println("Enter the tracking number of the package you want to delete:");
+            
+            tn = sc.nextLine();
+            if (!verifyTrackingNumber(tn, 5)) {
+                
+            }
+            else {
+                return tn;
+            }
+        }
+        return null;
+    }
+    
+    private static String searchPrompt() {
+        boolean success = false;
+        String tn = null;
+        Scanner sc = new Scanner(System.in);
+        
+        while (!success) {
+            
+            System.out.println("Enter the tracking number of the package you want to delete:");
+            
+            tn = sc.nextLine();
+            if (!verifyTrackingNumber(tn, 5)) {
+                System.out.println("Please enter a valid tracking number.");
+            }
+            else {
+                return tn;
+            }
+        }
+        return null;
+    }   
     
     private static void exit() {
         

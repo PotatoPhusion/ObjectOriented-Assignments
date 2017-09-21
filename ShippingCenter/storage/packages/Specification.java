@@ -13,7 +13,7 @@ public enum Specification {
     BOOKS ("Books"),
     CATALOGS ("Catalogs"),
     DO_NOT_BEND ("Do-Not-Bend"),
-    N_A ("N/A");
+    N_A ("n/a");
     
     private String spec;
     
