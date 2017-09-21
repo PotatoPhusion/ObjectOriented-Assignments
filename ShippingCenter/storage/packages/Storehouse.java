@@ -6,6 +6,15 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.util.Scanner;
 
+
+/**
+ * Provides functions for working with PackageLists.
+ * 
+ * @author Rafael Reza
+ * @author Cullen Sturdivant
+ * 
+ * @version 1.0, 9/20/2017
+ */
 public class Storehouse {
 // intro to program
 
@@ -127,17 +136,6 @@ public class Storehouse {
             System.err.println("An unknown error occurred");
             e.printStackTrace();
         }
-            
-        
-
-
-
-
-
-
-
-
-
 
         exit = false;
 
@@ -269,6 +267,13 @@ public class Storehouse {
         }
     }
     
+    /**
+     * Verifies if the supplied string matches an appropriate package type.
+     * 
+     * @param the string to be verified.
+     * 
+     * @return True if there is a match, false otherwise.
+     */
     private static boolean verifyType(String type) {
         for (Type t : Type.values()) {
             if (type.equalsIgnoreCase(t.getValue())) {
@@ -277,7 +282,13 @@ public class Storehouse {
         }
         return false;
     }
-    
+    /**
+     * Verifies if the supplied string matches an appropriate specification.
+     * 
+     * @param the string to be verified.
+     * 
+     * @return True if there is a match, false otherwise.
+     */
     private static boolean verifySpecification(String spec) {
         for (Specification specify : Specification.values()) {
             if (spec.equalsIgnoreCase(specify.getValue())) {
@@ -287,6 +298,13 @@ public class Storehouse {
         return false;
     }
     
+    /**
+     * Verifies if the supplied string matches an appropriate mailing class.
+     * 
+     * @param the string to be verified.
+     * 
+     * @return True if there is a match, false otherwise.
+     */
     private static boolean verifyMailingClass(String mc) {
         for (MailingClass mailClass : MailingClass.values()) {
             if (mc.equalsIgnoreCase(mailClass.getValue())) {
@@ -296,6 +314,11 @@ public class Storehouse {
         return false;
     }
     
+    /**
+     * Prompts the user for all fields required to create a new package.
+     * 
+     * @return Returns the package that was created.
+     */
     private static Package addPackagePrompt() {
         
         String tn = null;
@@ -390,6 +413,12 @@ public class Storehouse {
         return new Package(tn, type, spec, mc, w, v);
     }
     
+    /**
+     * Prompts the user to provide a tracking number for deletion
+     * in a PackageList.
+     * 
+     * @return the verified tracking number.
+     */
     private static String deletePrompt() {
         boolean success = false;
         String tn = null;
@@ -410,6 +439,12 @@ public class Storehouse {
         return null;
     }
     
+    /**
+     * Prompts the user to enter the tracking number to find a package
+     * in a PackageList.
+     * 
+     * @return the verified tracking number.
+     */
     private static String searchPrompt() {
         boolean success = false;
         String tn = null;
@@ -430,6 +465,11 @@ public class Storehouse {
         return null;
     }   
     
+    /**
+     * Prepares the program to exit by saving a PackageList to a file.
+     * 
+     * @param the PackageList to be saved to a file.
+     */
     private static void exit(PackageList packages) {
         try {
             FileWriter fw = new FileWriter("packages.txt");
