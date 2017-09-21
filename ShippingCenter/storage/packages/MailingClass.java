@@ -9,7 +9,7 @@ package storage.packages;
  */
 public enum MailingClass
 {
-    FIRST_CLASS ("First Class"),
+    FIRST_CLASS ("First"),
     PRIORITY ("Priority"),
     RETAIL ("Retail"),
     GROUND ("Ground"),

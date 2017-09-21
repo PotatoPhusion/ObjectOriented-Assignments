@@ -12,7 +12,7 @@ public enum Specification {
     FRAGILE ("Fragile"),
     BOOKS ("Books"),
     CATALOGS ("Catalogs"),
-    DO_NOT_BEND ("Do-Not-Bend"),
+    DO_NOT_BEND ("Do-not-Bend"),
     N_A ("n/a");
     
     private String spec;

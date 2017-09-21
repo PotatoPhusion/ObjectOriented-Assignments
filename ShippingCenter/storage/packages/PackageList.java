@@ -17,7 +17,7 @@ public class PackageList {
                                   "   CLASS    |   WEIGHT   | VOLUME |";
     private final String divider = " | ";
 
-    private ArrayList<Package> packages;
+    private static ArrayList<Package> packages;
 
     /**
      * Generates a new PackageList.
@@ -53,6 +53,24 @@ public class PackageList {
         }
 
         System.out.println(line);
+    }
+    
+    /**
+     * Accessor for the length of the PackageList.
+     * 
+     * @return the length of the PackageList
+     */
+    public int length() {
+        return packages.size();
+    }
+    
+    /**
+     * Find the value at any given index.
+     * 
+     * @return the Package object at that index.
+     */
+    public static Package get(int index) {
+        return packages.get(index);
     }
 
     /**
@@ -95,7 +113,7 @@ public class PackageList {
     public int searchPackages(String trackingNum) {
         int i = 0;
         for (Package pack : packages) {
-            if (pack.getTrackingNumber().equals(trackingNum)) {
+            if (pack.getTrackingNumber().equalsIgnoreCase(trackingNum)) {
                 return i;
             }
             i++;

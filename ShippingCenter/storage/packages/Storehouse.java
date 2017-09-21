@@ -1,7 +1,9 @@
 package storage.packages;
 
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.util.Scanner;
 
 public class Storehouse {
@@ -100,12 +102,12 @@ public class Storehouse {
                     if (inFile.hasNextInt()) {
                         tempVolume = inFile.nextInt();
                         
-                        inFile.next(); // nextInt does not read new line characters
+                        //inFile.next(); // nextInt does not read new line characters
                     }
                     else {
                         System.out.println("Found invalid volume. Skipping package.");
                         
-                        inFile.next();
+                        //inFile.next();
                         failFlag = true;
                     }
                 }
@@ -218,8 +220,9 @@ public class Storehouse {
                     }
                 }
                 
+                success = false;
                 while (!success) {
-                    System.out.println("Enter the minimum bound for the weight range:");
+                    System.out.println("Enter the maximum bound for the weight range:");
                     
                     if (!userInput.hasNextDouble()) {
                         System.out.println("That is not a valid input");
@@ -240,7 +243,8 @@ public class Storehouse {
                 parcels.showByWeightRange(min, max);
                 break;
             default:
-                exit();
+                exit(parcels);
+                exit = true;
                 break;
             }
         }
@@ -267,7 +271,7 @@ public class Storehouse {
     
     private static boolean verifyType(String type) {
         for (Type t : Type.values()) {
-            if (type.equals(t.getValue())) {
+            if (type.equalsIgnoreCase(t.getValue())) {
                 return true;
             }
         }
@@ -276,7 +280,7 @@ public class Storehouse {
     
     private static boolean verifySpecification(String spec) {
         for (Specification specify : Specification.values()) {
-            if (spec.equals(specify.getValue())) {
+            if (spec.equalsIgnoreCase(specify.getValue())) {
                 return true;
             }
         }
@@ -285,7 +289,7 @@ public class Storehouse {
     
     private static boolean verifyMailingClass(String mc) {
         for (MailingClass mailClass : MailingClass.values()) {
-            if (mc.equals(mailClass.getValue())) {
+            if (mc.equalsIgnoreCase(mailClass.getValue())) {
                 return true;
             }
         }
@@ -333,7 +337,7 @@ public class Storehouse {
         success = false;
         while (!success) {
             System.out.println("Enter the specification of the package " +
-                               "(Fragile, Books, Catalogs, Do-Not-Bend, N/A):");
+                               "(Fragile, Books, Catalogs, Do-Not-Bend, n/a):");
             spec = sc.nextLine();
             if (!verifySpecification(spec)) {
                 System.out.println("That is not a valid specification.");
@@ -346,7 +350,7 @@ public class Storehouse {
         success = false;
         while (!success) {
             System.out.println("Enter the mailing class of the package " +
-                               "First Class, Priority, Retail, Ground, Metro:");
+                               "(First, Priority, Retail, Ground, Metro):");
             mc = sc.nextLine();
             if (!verifyMailingClass(mc)) {
                 System.out.println("That is not a valid mailing class.");
@@ -426,8 +430,29 @@ public class Storehouse {
         return null;
     }   
     
-    private static void exit() {
-        
+    private static void exit(PackageList packages) {
+        try {
+            FileWriter fw = new FileWriter("packages.txt");
+            
+            for (int i = 0; i < packages.length(); i++) {
+                Package pack = packages.get(i);
+                
+                fw.write(pack.getTrackingNumber() + " ");
+                fw.write(pack.getType() + " ");
+                fw.write(pack.getSpecification() + " ");
+                fw.write(pack.getMailingClass() + " ");
+                fw.write(String.valueOf(pack.getWeight()));
+                fw.write(" ");
+                fw.write(String.valueOf(pack.getVolume()));
+                fw.write(String.format("%n"));
+            }
+            fw.flush();
+            fw.close();
+        }
+        catch (IOException e) {
+            System.err.println("Could not open file.");
+            e.printStackTrace();
+        }
     }
    
 }
