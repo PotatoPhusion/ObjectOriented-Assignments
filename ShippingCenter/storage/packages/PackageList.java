@@ -45,11 +45,8 @@ public class PackageList {
 
         for (Package pack : packages) {
             System.out.printf("| %10s" + divider, pack.getTrackingNumber());
-            System.out.printf("%8s" + divider, pack.getType());
             System.out.printf("%13s" + divider, pack.getSpecification());
             System.out.printf("%11s" + divider, pack.getMailingClass());
-            System.out.printf("%10.02f" + divider, pack.getWeight());
-            System.out.printf("%6d" + " |%n", pack.getVolume());
         }
 
         System.out.println(line);
@@ -131,6 +128,7 @@ public class PackageList {
      * @param min the lower bound of package weights.
      * @param max the upper bound of package weights.
      */
+    /*
     public void showByWeightRange(float min, float max) {
         System.out.println(line);
         System.out.println(header);
@@ -139,23 +137,21 @@ public class PackageList {
         for (Package pack : packages) {
             if (pack.getWeight() >= min && pack.getWeight() <= max){
                 System.out.printf("| %10s" + divider, pack.getTrackingNumber());
-                System.out.printf("%8s" + divider, pack.getType());
                 System.out.printf("%13s" + divider, pack.getSpecification());
                 System.out.printf("%11s" + divider, pack.getMailingClass());
-                System.out.printf("%10.02f" + divider, pack.getWeight());
-                System.out.printf("%6d" + " |%n", pack.getVolume());
             }
         }
 
         System.out.println(line);
     }
-    
+    */
     /**
      * Shows all packages within a given weight range.
      * 
      * @param min the lower bound of package weights.
      * @param max the upper bound of package weights.
      */
+    /*
     public void showByWeightRange(double min, double max) {
         System.out.println(line);
         System.out.println(header);
@@ -174,4 +170,5 @@ public class PackageList {
 
         System.out.println(line);
     }
+    */
 }

@@ -238,10 +238,10 @@ public class Storehouse {
                     }
                 }
                 
-                parcels.showByWeightRange(min, max);
+                //parcels.showByWeightRange(min, max);
                 break;
             default:
-                exit(parcels);
+                //exit(parcels);
                 exit = true;
                 break;
             }
@@ -470,6 +470,7 @@ public class Storehouse {
      * 
      * @param the PackageList to be saved to a file.
      */
+    /*
     private static void exit(PackageList packages) {
         try {
             FileWriter fw = new FileWriter("packages.txt");
@@ -494,5 +495,5 @@ public class Storehouse {
             e.printStackTrace();
         }
     }
-   
+    */
 }

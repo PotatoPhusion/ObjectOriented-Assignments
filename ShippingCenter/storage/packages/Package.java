@@ -1,18 +1,15 @@
 
 /**
  * @author Cullen Sturdivant
- * @version 1.0, 09/19/2017
+ * @version 1.1, 09/19/2017
  */
 package storage.packages;
 
 public class Package {
 
     private String trackingNumber;
-    private String type;
     private String specification;
     private String mailingClass;
-    private float  weight;
-    private int    volume;
 
     /**
      * Creates a new Package with <b>null</b> tracking number, type,
@@ -21,31 +18,22 @@ public class Package {
      */
     Package() {
         this.trackingNumber = null;
-        this.type = null;
         this.specification = null;
         this.mailingClass = null;
-        this.weight = 0f;
-        this.volume = 0;
     }
 
     /**
      * Creates a new Package with specified attributes.
      * 
      * @param trackingNumber the tracking number of the package, 5-character string.
-     * @param type the type of the package.
      * @param specification the specification of the package.
      * @param mailingClass the mailing class of the package.
-     * @param weight the weight of the package.
-     * @param volume the volume of the package.
      */
     Package(String trackingNumber, String type, String specification,
             String mailingClass, float weight, int volume) {
         this.trackingNumber = trackingNumber;
-        this.type = type;
         this.specification = specification;
         this.mailingClass = mailingClass;
-        this.weight = weight;
-        this.volume = volume;
     }
     
     /**
@@ -55,15 +43,6 @@ public class Package {
      */
     public String getTrackingNumber() {
         return this.trackingNumber;
-    }
-    
-    /**
-     * Accessor for the Type.
-     * 
-     * @return the type of a package.
-     */
-    public String getType() {
-        return this.type;
     }
 
     /**
@@ -82,23 +61,5 @@ public class Package {
      */
     public String getMailingClass() {
         return this.mailingClass;
-    }
-
-    /**
-     * Accessor for the weight.
-     * 
-     * @return the weight of a package.
-     */
-    public float getWeight() {
-        return this.weight;
-    }
-
-    /**
-     * Accessor for the volume.
-     * 
-     * @return the volume of a package.
-     */
-    public int getVolume() {
-        return this.volume;
     }
 }
