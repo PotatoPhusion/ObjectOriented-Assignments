@@ -9,15 +9,12 @@ package storage.packages;
  */
 public class Drum extends Package {
     
-    private String material;
-    private int diameter;
+    private final String material;
+    private final int diameter;
     
-    public Drum() {
-        this.material = null;
-        this.diameter = 0;
-    }
-    
-    public Drum(String material, int diameter) {
+    public Drum(String trackingNumber, String specification, String mailingClass,
+                String material, int diameter) {
+        super(trackingNumber, specification, mailingClass);
         this.material = material;
         this.diameter = diameter;
     }

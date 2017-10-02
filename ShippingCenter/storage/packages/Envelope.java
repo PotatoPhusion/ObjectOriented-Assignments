@@ -9,17 +9,8 @@ package storage.packages;
  */
 public class Envelope extends Package {
     
-    private int height;
-    private int width;
-    
-    /**
-     * Constructor for objects of class Envelope.
-     */
-    public Envelope()
-    {
-        this.height = 0;
-        this.width = 0;
-    }
+    private final int height;
+    private final int width;
     
     /**
      * Constructor for objects of class Envelope.
@@ -27,7 +18,9 @@ public class Envelope extends Package {
      * @param height the height of the envelope.
      * @param width the width of the envelope.
      */
-    public Envelope(int height, int width) {
+    public Envelope(String trackingNumber, String specification, String mailingClass,
+                    int height, int width) {
+        super(trackingNumber, specification, mailingClass);
         this.height = height;
         this.width = width;
     }

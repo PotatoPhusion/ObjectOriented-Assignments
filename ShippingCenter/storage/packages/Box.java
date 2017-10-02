@@ -9,15 +9,12 @@ package storage.packages;
  */
 public class Box extends Package {
     
-    private int largestDim;
-    private int volume;
+    private final int largestDim;
+    private final int volume;
     
-    public Box() {
-        largestDim = 0;
-        volume = 0;
-    }
-    
-    public Box(int largestDim, int volume) {
+    public Box(String trackingNumber, String specification, String mailingClass,
+               int largestDim, int volume) {
+        super(trackingNumber, specification, mailingClass);
         this.largestDim = largestDim;
         this.volume = volume;
     }

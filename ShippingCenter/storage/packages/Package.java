@@ -29,8 +29,8 @@ public class Package {
      * @param specification the specification of the package.
      * @param mailingClass the mailing class of the package.
      */
-    Package(String trackingNumber, String type, String specification,
-            String mailingClass, float weight, int volume) {
+    Package(String trackingNumber, String specification,
+            String mailingClass) {
         this.trackingNumber = trackingNumber;
         this.specification = specification;
         this.mailingClass = mailingClass;
