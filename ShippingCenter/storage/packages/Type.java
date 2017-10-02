@@ -5,19 +5,19 @@ package storage.packages;
  * The different types of packages.
  *
  * @author Cullen Studivant
- * @version 1.0, 9/20/2017
+ * @version 1.1, 10/1/2017
  */
 public enum Type
 {
-    POSTCARD ("Postcard"),
-    LETTER ("Letter"),
+    //POSTCARD ("Postcard"),
+    //LETTER ("Letter"),
     ENVELOPE ("Envelope"),
-    PACKET ("Packet"),
+    //PACKET ("Packet"),
     BOX ("Box"),
     CRATE ("Crate"),
-    DRUM ("Drum"),
-    ROLL ("Roll"),
-    TUBE ("Tube");
+    DRUM ("Drum");
+    //ROLL ("Roll"),
+    //TUBE ("Tube");
     
     private String type;
     
