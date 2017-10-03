@@ -2,34 +2,27 @@ package storage.users;
 
 
 /**
- * Write a description of class Customer here.
+ * A class containing information on a customer.
  *
- * @author (your name)
- * @version (a version number or a date)
+ * @author Rafael Reza
+ * @version 1.0, 10/02/2017
  */
-public class Customer extends User
-{
-    // instance variables - replace the example below with your own
-    private int x;
-
-    /**
-     * Constructor for objects of class Customer
-     */
-    public Customer()
-    {
-        // initialise instance variables
-        x = 0;
+public class Customer extends User {
+   
+    private String phoneNumber; //phone number
+    private String address;     // address 
+    
+    public Customer(int userID, String firstName, String lastName,
+                    String phoneNumber, String address) {       
+         super(userID, firstName, lastName);
+         this.phoneNumber = phoneNumber;
+         this.address = address;
     }
 
-    /**
-     * An example of a method - replace this comment with your own
-     *
-     * @param  y  a sample parameter for a method
-     * @return    the sum of x and y
-     */
-    public int sampleMethod(int y)
-    {
-        // put your code here
-        return x + y;
+    public String getphone() {
+        return this.phoneNumber;
+    }
+    public String address() {
+        return this.address;
     }
 }
