@@ -8,7 +8,7 @@ import java.util.Date;
  * @author Cullen Sturdivant
  * @version 1.0, 10/2/2017
  */
-public class TransactionManager {
+public class Transaction {
     
     private int customerID;
     private String trackingNumber;
@@ -17,7 +17,7 @@ public class TransactionManager {
     private float shippingCost;
     private int employeeID;
     
-    public TransactionManager(int customerID, String trackingNumber, Date shippingDate,
+    public Transaction(int customerID, String trackingNumber, Date shippingDate,
                               Date deliveryDate, float shippingCost, int employeeID) {
         this.customerID = customerID;
     }
