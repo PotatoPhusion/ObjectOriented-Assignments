@@ -122,10 +122,10 @@ public class Storehouse {
                 }
                 
                 if (!failFlag) {
-                    Package pack = new Package(tempTN, tempType, tempSpec,
-                                               tempMC, tempWeight, tempVolume);
+                    //Package pack = new Package(tempTN, tempType, tempSpec,
+                    //                           tempMC, tempWeight, tempVolume);
                     
-                    parcels.addPackage(pack);
+                    //parcels.addPackage(pack);
                 }
             }
         }

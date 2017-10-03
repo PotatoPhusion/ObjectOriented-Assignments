@@ -9,15 +9,12 @@ package storage.packages;
  */
 public class Crate extends Package {
 
-    private float maxLoadWeight;
-    private String content;
+    private final float maxLoadWeight;
+    private final String content;
     
-    public Crate() {
-        this.maxLoadWeight = 0f;
-        this.content = "Empty";
-    }
-    
-    public Crate(float maxLoad, String content) {
+    public Crate(String trackingNumber, String specification, String mailingClass,
+                 float maxLoad, String content) {
+        super(trackingNumber, specification, mailingClass);
         this.maxLoadWeight = maxLoad;
         this.content = content;
     }
