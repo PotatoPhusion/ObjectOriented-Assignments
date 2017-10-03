@@ -46,7 +46,7 @@ public class PackageList  {
         for (Package pack : packages) {
             System.out.printf("| %10s" + divider, pack.getTrackingNumber());
             System.out.printf("%13s" + divider, pack.getSpecification());
-            System.out.printf("%11s" + divider, pack.getMailingClass());
+            System.out.printf("%11s" + " |", pack.getMailingClass());
         }
 
         System.out.println(line);

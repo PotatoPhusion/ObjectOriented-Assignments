@@ -1,5 +1,6 @@
 #BlueJ package file
 objectbench.height=155
+<<<<<<< HEAD
 objectbench.width=556
 package.divider.horizontal=0.6002132196162047
 package.divider.vertical=0.6206088992974239
@@ -8,6 +9,16 @@ package.editor.width=844
 package.editor.x=242
 package.editor.y=131
 package.frame.height=527
+=======
+objectbench.width=934
+package.divider.horizontal=0.6
+package.divider.vertical=0.6375838926174496
+package.editor.height=278
+package.editor.width=844
+package.editor.x=2873
+package.editor.y=546
+package.frame.height=547
+>>>>>>> 6e86e66122a9b960505ba1beb891b536cf1c5786
 package.frame.width=974
 package.numDependencies=0
 package.numTargets=3
@@ -19,6 +30,7 @@ readme.width=47
 readme.x=10
 readme.y=10
 target1.height=50
+<<<<<<< HEAD
 target1.name=Employee
 target1.showInterface=false
 target1.type=ClassTarget
@@ -34,11 +46,33 @@ target2.typeParameters=
 target2.width=80
 target2.x=300
 target2.y=120
+=======
+target1.name=User
+target1.showInterface=false
+target1.type=ClassTarget
+target1.typeParameters=
+target1.width=80
+target1.x=190
+target1.y=20
+target2.height=50
+target2.name=Employee
+target2.showInterface=false
+target2.type=ClassTarget
+target2.typeParameters=
+target2.width=90
+target2.x=140
+target2.y=170
+>>>>>>> 6e86e66122a9b960505ba1beb891b536cf1c5786
 target3.height=50
 target3.name=Customer
 target3.showInterface=false
 target3.type=ClassTarget
 target3.typeParameters=
 target3.width=80
+<<<<<<< HEAD
 target3.x=10
 target3.y=90
+=======
+target3.x=260
+target3.y=170
+>>>>>>> 6e86e66122a9b960505ba1beb891b536cf1c5786
