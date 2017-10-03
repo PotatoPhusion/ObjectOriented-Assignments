@@ -1,6 +1,7 @@
 package storage.transactions;
 
 import java.util.Date;
+import java.io.Serializable;
 
 /**
  * Handles package transaction details.
@@ -8,7 +9,7 @@ import java.util.Date;
  * @author Cullen Sturdivant
  * @version 1.0, 10/2/2017
  */
-public class Transaction {
+public class Transaction implements Serializable{
     
     private int customerID;
     private String trackingNumber;
@@ -18,7 +19,7 @@ public class Transaction {
     private int employeeID;
     
     public Transaction(int customerID, String trackingNumber, Date shippingDate,
-                              Date deliveryDate, float shippingCost, int employeeID) {
+                       Date deliveryDate, float shippingCost, int employeeID) {
         this.customerID = customerID;
     }
     

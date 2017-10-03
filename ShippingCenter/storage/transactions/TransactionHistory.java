@@ -1,6 +1,10 @@
 package storage.transactions;
 
 import java.util.ArrayList;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.Serializable;
 
 /**
  * Contains a list of all transaction history.
@@ -9,9 +13,9 @@ import java.util.ArrayList;
  * @author Cullen Sturdivant
  * @version 1.0, 10/2/2017
  */
-public class TransactionHistory {
+public class TransactionHistory implements Serializable {
     
-    private ArrayList<Transaction> transactionList;
+    private static ArrayList<Transaction> transactionList;
     
     public TransactionHistory() {
         transactionList = new ArrayList<Transaction>();
@@ -19,5 +23,9 @@ public class TransactionHistory {
     
     public void addTransaction(Transaction transaction) {
         transactionList.add(transaction);
+    }
+    
+    public void loadFromFile(String filename) {
+        
     }
 }
