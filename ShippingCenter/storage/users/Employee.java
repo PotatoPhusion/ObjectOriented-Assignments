@@ -2,34 +2,34 @@ package storage.users;
 
 
 /**
- * Write a description of class Employee here.
+ * A class containing information on an employee.
  *
- * @author (your name)
- * @version (a version number or a date)
+ * @author Cullen Sturdivant
+ * @version 1.0, 10/2/2017
  */
-public class Employee extends User
-{
-    // instance variables - replace the example below with your own
-    private int x;
-
-    /**
-     * Constructor for objects of class Employee
-     */
-    public Employee()
-    {
-        // initialise instance variables
-        x = 0;
+public class Employee extends User {
+    
+    private int ssn;                // Social Security Number
+    private float monthlySalary;
+    private int ban;                // Bank Account Number
+    
+    public Employee(int userID, String firstName, String lastName,
+                    int ssn, float monthlySalary, int ban) {
+        super(userID, firstName, lastName);
+        this.ssn = ssn;
+        this.monthlySalary = monthlySalary;
+        this.ban = ban;
     }
-
-    /**
-     * An example of a method - replace this comment with your own
-     *
-     * @param  y  a sample parameter for a method
-     * @return    the sum of x and y
-     */
-    public int sampleMethod(int y)
-    {
-        // put your code here
-        return x + y;
+    
+    public int getSSN() {
+        return this.ssn;
+    }
+    
+    public float getMonthlySalary() {
+        return this.monthlySalary;
+    }
+    
+    public int getBankAccountNumber() {
+        return this.ban;
     }
 }
