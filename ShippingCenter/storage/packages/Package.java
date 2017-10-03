@@ -5,7 +5,7 @@
  */
 package storage.packages;
 
-public class Package {
+public class Package implements Comparable<Package>  {
 
     private String trackingNumber;
     private String specification;
@@ -36,6 +36,10 @@ public class Package {
         this.mailingClass = mailingClass;
     }
     
+    public String compareTo(Object obj) {
+        String obj = ((Package)obj).trackingNumber;
+    
+    }
     /**
      * Accessor for the Tracking Number.
      * 

@@ -141,12 +141,17 @@ public class Storehouse {
 
         while (!exit) {
 
-            System.out.println("1. Show all existing package records.");
+            System.out.println("1. Show all existing package records in the database.");
             System.out.println("2. Add new package record to the database.");
-            System.out.println("3. Delete package record from database.");
+            System.out.println("3. Delete package record from the database.");
             System.out.println("4. Search for a package (given its tracking number).");
-            System.out.println("5. Show a list of packages within a given weight range.");
-            System.out.println("6. Exit program.");
+            System.out.println("5. Show a list of users in the database.");
+            System.out.println("6. Add new user to the database.");
+            System.out.println("7. Update user info (given their ID).");
+            System.out.println("8. Complete a shipping transaction.");
+            System.out.println("9. Show completed shipping transactions.");
+            //System.out.println("5. Show a list of packages within a given weight range.");
+            System.out.println("10. Exit program.");
             
             //System.out.println(Type.values()[2].getValue());
 

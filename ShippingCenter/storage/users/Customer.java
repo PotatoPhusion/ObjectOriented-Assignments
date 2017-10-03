@@ -19,7 +19,7 @@ public class Customer extends User {
          this.address = address;
     }
 
-    public String getphone() {
+    public String getPhone() {
         return this.phoneNumber;
     }
     public String address() {

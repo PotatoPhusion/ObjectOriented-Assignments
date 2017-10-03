@@ -9,7 +9,7 @@ import java.util.Scanner;
 import java.util.ArrayList;
 import storage.packages.Package;
 
-public class PackageList {
+public class PackageList  {
 
     private final String line = "--------------------------------------------" +
                                 "---------------------------------";
@@ -121,7 +121,8 @@ public class PackageList {
     public int searchPackages(Package pack) {
         return -1;
     }
-
+    
+    
     /**
      * Shows all packages within a given weight range.
      * 
