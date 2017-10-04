@@ -5,7 +5,7 @@
  */
 package storage.packages;
 
-public class Package implements Comparable {
+public class Package implements Comparable<Package> {
 
     private String trackingNumber;
     private String specification;
@@ -36,6 +36,13 @@ public class Package implements Comparable {
         this.mailingClass = mailingClass;
     }
     
+    /**
+     * Supposed to sort the packages but probably doesn't even work.
+     * 
+     * @param P which is the package
+     * 
+     * @return the sorted packages
+     */
     public int compareTo(Package P) {
         String pNum = ((Package)P).trackingNumber;
         return trackingNumber.compareTo(pNum);
