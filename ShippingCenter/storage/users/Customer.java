@@ -25,7 +25,7 @@ public class Customer extends User implements Serializable {
     public Customer(String firstName, String lastName, String phoneNumber, String address) {
 
         // FIXME: I am not done by any means.
-        super(100000, firstName, lastName);
+        super(firstName, lastName);
         this.phoneNumber = phoneNumber;
         this.address = address;
     }
@@ -41,7 +41,7 @@ public class Customer extends User implements Serializable {
      */
     public Customer(int userID, String firstName, String lastName,
                     String phoneNumber, String address) {       
-        super(userID, firstName, lastName);
+        super(firstName, lastName);
         this.phoneNumber = phoneNumber;
         this.address = address;
     }
@@ -62,5 +62,11 @@ public class Customer extends User implements Serializable {
      */
     public String getAddress() {
         return this.address;
+    }
+    
+    public void updateUserInfo(String firstName, String lastName, String phoneNumber, String address) {
+        super.updateUserInfo(firstName, lastName);
+        this.phoneNumber = phoneNumber;
+        this.address = address;
     }
 }

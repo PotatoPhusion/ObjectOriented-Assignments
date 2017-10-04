@@ -10,9 +10,11 @@ import java.io.Serializable;
  */
 public class Employee extends User implements Serializable {
     
-    private final int ssn;                // Social Security Number
-    private final float monthlySalary;
-    private final int ban;                // Bank Account Number
+    private final int EMPLOYEE_ID_BASE = 200000;
+    
+    private int ssn;                // Social Security Number
+    private float monthlySalary;
+    private int ban;                // Bank Account Number
     
     /**
      * Constructor for an Employee.
@@ -24,9 +26,10 @@ public class Employee extends User implements Serializable {
      * @param monthlySalary the monthly salary of the employee.
      * @param ban the direct deposit bank account number of the employee.
      */
-    public Employee(int userID, String firstName, String lastName,
+    public Employee(String firstName, String lastName,
                     int ssn, float monthlySalary, int ban) {
-        super(userID, firstName, lastName);
+        super(firstName, lastName);
+        generateUserID(EMPLOYEE_ID_BASE);
         this.ssn = ssn;
         this.monthlySalary = monthlySalary;
         this.ban = ban;
@@ -58,4 +61,13 @@ public class Employee extends User implements Serializable {
     public int getBankAccountNumber() {
         return this.ban;
     }
+    
+    public void updateUserInfo(String firstName, String lastName,
+                               int ssn, float salary, int ban) {
+        super.updateUserInfo(firstName, lastName);
+        this.ssn = ssn;
+        this.monthlySalary = salary;
+        this.ban = ban;
+    }
+    
 }

@@ -8,11 +8,11 @@ import java.io.Serializable;
  * @author Cullen Sturdivant
  * @version 1.0, 10/2/2017
  */
-public class User implements Serializable {
+public abstract class User implements Comparable, Serializable {
 
-    private final int userID;
-    private final String firstName;
-    private final String lastName;
+    private int userID;
+    private String firstName;
+    private String lastName;
     
     /**
      * Constructor for a user.
@@ -21,8 +21,8 @@ public class User implements Serializable {
      * @param firstName the first name of the user.
      * @param lastName the last name of the user.
      */
-    public User(int userID, String firstName, String lastName) {
-        this.userID = userID;
+    public User(String firstName, String lastName) {
+        this.userID = 0;
         this.firstName = firstName;
         this.lastName = lastName;
     }
@@ -51,7 +51,7 @@ public class User implements Serializable {
      * @return the last name of the user.
      */
     public String getLastName() {
-        return this.firstName;
+        return this.lastName;
     }
     
     /**
@@ -63,6 +63,28 @@ public class User implements Serializable {
         String fullName;
         fullName = this.firstName + " " + this.lastName;
         return fullName;
+    }
+    
+    public void updateUserInfo(String firstName, String lastName) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+    }
+    
+    public int compareTo(Object otherUser) {
+        String otherName = ((User)otherUser).getLastName();
+        int lastNameTest = this.getLastName().compareTo(otherName);
+        
+        if (lastNameTest == 0) {
+            otherName = ((User)otherUser).getFirstName();
+            return this.getFirstName().compareTo(otherName);
+        }
+        else {
+            return lastNameTest;
+        }
+    }
+    
+    protected void generateUserID(int startID) {
+        this.userID = startID;
     }
     
 }
