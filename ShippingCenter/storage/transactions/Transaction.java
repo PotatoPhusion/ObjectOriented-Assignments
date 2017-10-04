@@ -18,6 +18,7 @@ public class Transaction implements Serializable{
     private float shippingCost;
     private int employeeID;
     
+    
     public Transaction(int customerID, String trackingNumber, Date shippingDate,
                        Date deliveryDate, float shippingCost, int employeeID) {
         this.customerID = customerID;
