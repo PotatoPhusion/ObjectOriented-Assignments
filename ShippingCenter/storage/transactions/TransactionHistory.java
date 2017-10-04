@@ -17,10 +17,18 @@ public class TransactionHistory implements Serializable {
     
     private static ArrayList<Transaction> transactionList;
     
+    /**
+     * Constructor for the transaction history.
+     */
     public TransactionHistory() {
         transactionList = new ArrayList<Transaction>();
     }
     
+    /**
+     * Adds a new transaction to the transaction history list.
+     * 
+     * @param transaction the transaction to be stored in history.
+     */
     public void addTransaction(Transaction transaction) {
         transactionList.add(transaction);
     }

@@ -2,11 +2,11 @@
 dependency1.from=TransactionHistory
 dependency1.to=Transaction
 dependency1.type=UsesDependency
-objectbench.height=155
+objectbench.height=137
 objectbench.width=934
 package.divider.horizontal=0.6
-package.divider.vertical=0.6375838926174496
-package.editor.height=278
+package.divider.vertical=0.6778523489932886
+package.editor.height=296
 package.editor.width=844
 package.editor.x=2873
 package.editor.y=546
