@@ -9,6 +9,9 @@ package storage.packages;
  */
 public class Drum extends Package {
     
+    private final String divider = " | ";
+    private final String packageType = "Drum";
+    
     private final String material;
     private final int diameter;
     
@@ -25,5 +28,18 @@ public class Drum extends Package {
     
     public int getDiameter() {
         return this.diameter;
+    }
+    
+    public void print() {
+        System.out.printf("| %8s" + divider, this.packageType);
+        super.print();
+        System.out.printf("%10s" + divider, " ");
+        System.out.printf("%7s" + divider, " ");
+        System.out.printf("%17s" + divider, " ");
+        System.out.printf("%10s" + divider, " ");
+        System.out.printf("%15s" + divider, " ");
+        System.out.printf("%13s" + divider, " ");
+        System.out.printf("%8s" + divider, material);
+        System.out.printf("%8d |%n", diameter);
     }
 }

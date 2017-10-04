@@ -29,7 +29,6 @@ public class Employee extends User implements Serializable {
     public Employee(String firstName, String lastName,
                     int ssn, float monthlySalary, int ban) {
         super(firstName, lastName);
-        generateUserID(EMPLOYEE_ID_BASE);
         this.ssn = ssn;
         this.monthlySalary = monthlySalary;
         this.ban = ban;

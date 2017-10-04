@@ -10,6 +10,9 @@ import java.io.Serializable;
  * @version 1.0, 10/2/2017
  */
 public class UserList implements Serializable {
+
+    private final int CUSTOMER_ID_BASE = 100000;
+    private final int EMPLOYEE_ID_BASE = 200000;
     
     private ArrayList<User> users;
     
@@ -27,6 +30,19 @@ public class UserList implements Serializable {
      */
     public void addUser(User newUser) {
         users.add(newUser);
+        if (newUser.getUserID() == 0) {
+            generateUserID(newUser);
+        }
     }
     
+    private void generateUserID(User u) {
+        if (u instanceof Employee) {
+            int id = EMPLOYEE_ID_BASE + this.users.size();
+            u.setNewUserID(id);
+        }
+        else if (u instanceof Customer) {
+            int id = CUSTOMER_ID_BASE + this.users.size();
+            u.setNewUserID(id);
+        }
+    }
 }

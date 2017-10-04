@@ -37,6 +37,17 @@ public abstract class User implements Comparable, Serializable {
     }
     
     /**
+     * Sets a new user ID only if one has not been set previously.
+     * 
+     * @param newUserID the new ID to assign to this user.
+     */
+    public void setNewUserID(int newUserID) {
+        if (this.userID == 0) {
+            this.userID = newUserID;
+        }
+    }
+    
+    /**
      * Accessor for the first name of the user.
      * 
      * @return the first name of the user.
@@ -70,6 +81,7 @@ public abstract class User implements Comparable, Serializable {
         this.lastName = lastName;
     }
     
+    
     public int compareTo(Object otherUser) {
         String otherName = ((User)otherUser).getLastName();
         int lastNameTest = this.getLastName().compareTo(otherName);
@@ -82,9 +94,4 @@ public abstract class User implements Comparable, Serializable {
             return lastNameTest;
         }
     }
-    
-    protected void generateUserID(int startID) {
-        this.userID = startID;
-    }
-    
 }

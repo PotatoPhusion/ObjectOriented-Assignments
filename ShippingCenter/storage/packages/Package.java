@@ -1,12 +1,16 @@
+package storage.packages;
 
 /**
+ * Package class is the base class for all packages.
+ * 
  * @author Cullen Sturdivant
  * @version 1.1, 09/19/2017
  */
-package storage.packages;
-
-public class Package {
-
+public class Package implements Comparable {
+    
+    private final String divider = " | ";
+    private final String packageType = "No Type";
+    
     private String trackingNumber;
     private String specification;
     private String mailingClass;
@@ -61,5 +65,31 @@ public class Package {
      */
     public String getMailingClass() {
         return this.mailingClass;
+    }
+    
+    public void printForPackageType() {
+        System.out.printf("| %10s" + divider, this.trackingNumber);
+        System.out.printf("%13s" + divider, this.specification);
+        System.out.printf("%11s" + divider, this.mailingClass);
+    }
+    
+    public void print() {
+        System.out.printf("| %8s" + divider, this.packageType);
+        System.out.printf("%10s" + divider, this.trackingNumber);
+        System.out.printf("%13s" + divider, this.specification);
+        System.out.printf("%11s" + divider, this.mailingClass);
+        System.out.printf("%10s" + divider, " ");
+        System.out.printf("%7s" + divider, " ");
+        System.out.printf("%17s" + divider, " ");
+        System.out.printf("%10s" + divider, " ");
+        System.out.printf("%15s" + divider, " ");
+        System.out.printf("%13s" + divider, " ");
+        System.out.printf("%8s" + divider, " ");
+        System.out.printf("%8s |%n", " ");
+    }
+    
+    public int compareTo(Object pack) {
+        String track = ((Package)pack).getTrackingNumber();
+        return this.getTrackingNumber().compareTo(track);
     }
 }

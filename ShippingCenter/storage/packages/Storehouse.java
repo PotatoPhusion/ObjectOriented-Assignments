@@ -6,6 +6,9 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.util.Scanner;
 
+import storage.users.*;
+import storage.transactions.*;
+
 
 /**
  * Provides functions for working with PackageLists.
@@ -13,7 +16,7 @@ import java.util.Scanner;
  * @author Rafael Reza
  * @author Cullen Sturdivant
  * 
- * @version 1.0, 9/20/2017
+ * @version 1.1, 10/4/2017
  */
 public class Storehouse {
 // intro to program
@@ -22,133 +25,28 @@ public class Storehouse {
 
     public static void main(String[] args) {
 
-        PackageList parcels = new PackageList(1);
+        PackageList storehouse = new PackageList();
+        UserList users = new UserList();
+        
         boolean exit;
         boolean inMenu;
         int input = 0;
         Scanner userInput = new Scanner(System.in);
 
-
-        // *********************************
-        // Set up the file Reader
-        // *********************************
-        FileReader fr;
-        Scanner inFile = null;
-
-        try {
-            fr = new FileReader("packages.txt");
-            inFile = new Scanner(fr);
-            
-            // *********************************
-            // Read packages in from file
-            // *********************************
-            while (inFile.hasNext()) {
-                
-                boolean failFlag = false;
-                
-                String tempTN;
-                String tempType = null;
-                String tempSpec = null;
-                String tempMC = null;
-                float tempWeight = 0f;
-                int tempVolume = 0;
-                
-                tempTN = inFile.next();
-                
-                if (!verifyTrackingNumber(tempTN, TRACKING_NUM_LENGTH)) {
-                    System.out.println("Found invalid tracking number. Skipping package.");
-                    
-                    inFile.nextLine();
-                    failFlag = true;
-                }
-                
-                if (!failFlag) {
-                    tempType = inFile.next();
-                
-                    if (!verifyType(tempType)) {
-                        System.out.println("Found invalid type. Skipping package.");
-                        
-                        inFile.nextLine();
-                        failFlag = true;
-                    }
-                }
-                
-                if (!failFlag) {
-                    tempSpec = inFile.next();
-                    
-                    if (!verifySpecification(tempSpec)) {
-                        System.out.println("Found invalid specification. Skipping package.");
-                        
-                        inFile.nextLine();
-                        failFlag = true;
-                    }
-                }
-                
-                if (!failFlag) {
-                    tempMC = inFile.next();
-                    
-                    if (!verifyMailingClass(tempMC)) {
-                        System.out.println("Found invalid mailing class. Skipping package.");
-                        
-                        inFile.nextLine();
-                        failFlag = true;
-                    }
-                }
-                
-                if (!failFlag) {
-                    if (inFile.hasNextDouble()) {
-                        tempWeight = (float)inFile.nextDouble();
-                    }
-                    else {
-                        System.out.println("Found invalid weight. Skipping package.");
-                        
-                        inFile.nextLine();
-                        failFlag = true;
-                    }
-                }
-                
-                if (!failFlag) {
-                    if (inFile.hasNextInt()) {
-                        tempVolume = inFile.nextInt();
-                        
-                        //inFile.next(); // nextInt does not read new line characters
-                    }
-                    else {
-                        System.out.println("Found invalid volume. Skipping package.");
-                        
-                        //inFile.next();
-                        failFlag = true;
-                    }
-                }
-                
-                if (!failFlag) {
-                    //Package pack = new Package(tempTN, tempType, tempSpec,
-                    //                           tempMC, tempWeight, tempVolume);
-                    
-                    //parcels.addPackage(pack);
-                }
-            }
-        }
-        catch (FileNotFoundException ex) {
-            System.err.println("The file could not be accessed");
-        }
-        catch (Exception e) {
-            System.err.println("An unknown error occurred");
-            e.printStackTrace();
-        }
-
         exit = false;
 
         while (!exit) {
 
-            System.out.println("1. Show all existing package records.");
-            System.out.println("2. Add new package record to the database.");
-            System.out.println("3. Delete package record from database.");
-            System.out.println("4. Search for a package (given its tracking number).");
-            System.out.println("5. Show a list of packages within a given weight range.");
-            System.out.println("6. Exit program.");
-            
-            //System.out.println(Type.values()[2].getValue());
+            System.out.println("1.  Show all existing package records.");
+            System.out.println("2.  Add new package record to the database.");
+            System.out.println("3.  Delete package record from database.");
+            System.out.println("4.  Search for a package (given its tracking number).");
+            System.out.println("5.  Show a list of users in the database.");
+            System.out.println("6.  Add new user to the database.");
+            System.out.println("7.  Update user info (given their ID).");
+            System.out.println("8.  Complete a shipping transaction.");
+            System.out.println("9.  Show completed shipping transaction.");
+            System.out.println("10. Exit program.");
 
             inMenu = true;
 
@@ -156,7 +54,7 @@ public class Storehouse {
                 if (userInput.hasNextInt()) {
                     input = userInput.nextInt();
 
-                    if (input >= 1 && input <= 6) {
+                    if (input >= 1 && input <= 10) {
                         inMenu = false;
                     }
                     else {
@@ -168,85 +66,18 @@ public class Storehouse {
                     System.out.println(badInput + " is not a menu option");
                 }
             }
-
+            
             switch (input) {
-            case (1):
-                parcels.showAll();
-                break;
-            case (2):
-                Package p = addPackagePrompt();
-                parcels.addPackage(p);
-                break;
-            case (3):
-                String d = deletePrompt();
-                boolean flag = parcels.deletePackage(d);
                 
-                if (flag) {
-                    System.out.println("Package removed\n");
-                }
-                else {
-                    System.out.println("Could not remove package");
-                }
-                
-                break;
-            case (4):
-                String s = searchPrompt();
-                int index = parcels.searchPackages(s);
-                
-                if (index == -1) {
-                    System.out.println("Could not find package with tracking number " + s);
-                }
-                else {
-                    System.out.println("Package found at location " + index);
-                }
-                
-                break;
-            case (5):
-                boolean success = false;
-                double min = 0;
-                double max = 1;
-                while (!success) {
-                    System.out.println("Enter the minimum bound for the weight range:");
-                    
-                    if (!userInput.hasNextDouble()) {
-                        System.out.println("That is not a valid input");
-                        userInput.nextLine();
-                    }
-                    else {
-                        min = userInput.nextDouble();
-                        success = true;
-                    }
-                }
-                
-                success = false;
-                while (!success) {
-                    System.out.println("Enter the maximum bound for the weight range:");
-                    
-                    if (!userInput.hasNextDouble()) {
-                        System.out.println("That is not a valid input");
-                        userInput.nextLine();
-                    }
-                    else {
-                        max = userInput.nextDouble();
-                        
-                        if (max <= min) {
-                            System.out.println("Max value cannot be smaller than min value");
-                        }
-                        else {
-                            success = true;
-                        }
-                    }
-                }
-                
-                //parcels.showByWeightRange(min, max);
-                break;
-            default:
-                //exit(parcels);
-                exit = true;
-                break;
+                case 1:  storehouse.showAll();
+                         break;
+                case 2:  Package pack = addPackagePrompt();
+                         storehouse.addPackage(pack);
+                         break;
+                case 3:
+                case 10: exit = true;
             }
         }
-        inFile.close(); //Close file
     }
     
     /**
@@ -332,22 +163,9 @@ public class Storehouse {
         
         Scanner sc = new Scanner(System.in);
         
-        System.out.println("Enter the tracking number of the package:");
         while (!success) {
-            tn = sc.nextLine();
-            if (!verifyTrackingNumber(tn, TRACKING_NUM_LENGTH)) {
-                System.out.println("That is not a valid tracking number.");
-                System.out.println("Enter the tracking number of the package:");
-            }
-            else {
-                success = true;
-            }
-        }
-        
-        success = false;
-        while (!success) {
-            System.out.println("Enter the type of package (Postcard, Letter," +
-                               " Envelope, Packet, Box, Crate, Drum, Roll, Tube)");
+            System.out.println("Enter the type of package (Envelope, Box, Crate, Drum, None):");
+            
             type = sc.nextLine();
             if (!verifyType(type)) {
                 System.out.println("That is not a valid type.");
@@ -356,61 +174,12 @@ public class Storehouse {
                 success = true;
             }
         }
-       
-        success = false;
-        while (!success) {
-            System.out.println("Enter the specification of the package " +
-                               "(Fragile, Books, Catalogs, Do-Not-Bend, n/a):");
-            spec = sc.nextLine();
-            if (!verifySpecification(spec)) {
-                System.out.println("That is not a valid specification.");
-            }
-            else {
-                success = true;
-            }
-        }
         
-        success = false;
-        while (!success) {
-            System.out.println("Enter the mailing class of the package " +
-                               "(First, Priority, Retail, Ground, Metro):");
-            mc = sc.nextLine();
-            if (!verifyMailingClass(mc)) {
-                System.out.println("That is not a valid mailing class.");
-            }
-            else {
-                success = true;
-            }
-        }
-        
-        success = false;
-        while (!success) {
-            System.out.println("Enter the weight of the package:");
+        if (type.equalsIgnoreCase("Envelope")) {
             
-            if (!sc.hasNextDouble()) {
-                System.out.println("That is not a valid weight.");
-                sc.nextLine();
-            }
-            else {
-                w = (float)sc.nextDouble();
-                success = true;
-            }
         }
         
-        success = false;
-        while (!success) {
-            System.out.println("Enter the volume of the package:");
-            
-            if (!sc.hasNextInt()) {
-                System.out.println("That is not a valid volume");
-                sc.nextLine();
-            }
-            else {
-                v = sc.nextInt();
-                success = true;
-            }
-        }
-        return new Package(tn, type, spec, mc, w, v);
+        return new Package();
     }
     
     /**
@@ -470,30 +239,7 @@ public class Storehouse {
      * 
      * @param the PackageList to be saved to a file.
      */
-    /*
     private static void exit(PackageList packages) {
-        try {
-            FileWriter fw = new FileWriter("packages.txt");
-            
-            for (int i = 0; i < packages.length(); i++) {
-                Package pack = packages.get(i);
-                
-                fw.write(pack.getTrackingNumber() + " ");
-                fw.write(pack.getType() + " ");
-                fw.write(pack.getSpecification() + " ");
-                fw.write(pack.getMailingClass() + " ");
-                fw.write(String.valueOf(pack.getWeight()));
-                fw.write(" ");
-                fw.write(String.valueOf(pack.getVolume()));
-                fw.write(String.format("%n"));
-            }
-            fw.flush();
-            fw.close();
-        }
-        catch (IOException e) {
-            System.err.println("Could not open file.");
-            e.printStackTrace();
-        }
+        
     }
-    */
 }

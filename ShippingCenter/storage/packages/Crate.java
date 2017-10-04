@@ -9,6 +9,9 @@ package storage.packages;
  */
 public class Crate extends Package {
 
+    private final String divider = " | ";
+    private final String packageType = "Crate";
+    
     private final float maxLoadWeight;
     private final String content;
     
@@ -25,6 +28,19 @@ public class Crate extends Package {
     
     public String getContent() {
         return this.content;
+    }
+    
+    public void print() {
+        System.out.printf("| %8s" + divider, this.packageType);
+        super.print();
+        System.out.printf("%10s" + divider, " ");
+        System.out.printf("%7s" + divider, " ");
+        System.out.printf("%17s" + divider, " ");
+        System.out.printf("%10s" + divider, " ");
+        System.out.printf("%15f" + divider, maxLoadWeight);
+        System.out.printf("%13s" + divider, content);
+        System.out.printf("%8s" + divider, " ");
+        System.out.printf("%8 |%n", " ");
     }
     
 }
