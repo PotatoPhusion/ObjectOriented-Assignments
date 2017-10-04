@@ -17,7 +17,7 @@ public class PackageList {
                                 "-----------------------";
     private final String header = "|   TYPE   | TRACKING # | SPECIFICATION | " +
                                   "   CLASS    |   HEIGHT   |  WIDTH  | LARGEST DIMENSION | " +
-                                  "  VOLUME   | MAX LOAD WEIGHT |    CONTENT    | MATERIAL | DIAMETER |";
+                                  "  VOLUME   | MAX LOAD WEIGHT |      CONTENT      | MATERIAL | DIAMETER |";
     private final String divider = " | ";
 
     private static ArrayList<Package> packages;

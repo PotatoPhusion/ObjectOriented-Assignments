@@ -68,22 +68,20 @@ public class Package implements Comparable {
     }
     
     public void printForPackageType() {
-        System.out.printf("| %10s" + divider, this.trackingNumber);
+        System.out.printf("%10s" + divider, this.trackingNumber);
         System.out.printf("%13s" + divider, this.specification);
         System.out.printf("%11s" + divider, this.mailingClass);
     }
     
     public void print() {
         System.out.printf("| %8s" + divider, this.packageType);
-        System.out.printf("%10s" + divider, this.trackingNumber);
-        System.out.printf("%13s" + divider, this.specification);
-        System.out.printf("%11s" + divider, this.mailingClass);
+        printForPackageType();
         System.out.printf("%10s" + divider, " ");
         System.out.printf("%7s" + divider, " ");
         System.out.printf("%17s" + divider, " ");
         System.out.printf("%10s" + divider, " ");
         System.out.printf("%15s" + divider, " ");
-        System.out.printf("%13s" + divider, " ");
+        System.out.printf("%17s" + divider, " ");
         System.out.printf("%8s" + divider, " ");
         System.out.printf("%8s |%n", " ");
     }

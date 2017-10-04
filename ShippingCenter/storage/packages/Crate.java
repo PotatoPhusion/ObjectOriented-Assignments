@@ -31,16 +31,22 @@ public class Crate extends Package {
     }
     
     public void print() {
+        String fContent = content;
+        if (content.length() > 17) {
+            fContent = content.substring(0, 13);
+            fContent = fContent + "...";
+        }
+        
         System.out.printf("| %8s" + divider, this.packageType);
-        super.print();
+        super.printForPackageType();
         System.out.printf("%10s" + divider, " ");
         System.out.printf("%7s" + divider, " ");
         System.out.printf("%17s" + divider, " ");
         System.out.printf("%10s" + divider, " ");
         System.out.printf("%15f" + divider, maxLoadWeight);
-        System.out.printf("%13s" + divider, content);
+        System.out.printf("%17s" + divider, fContent);
         System.out.printf("%8s" + divider, " ");
-        System.out.printf("%8 |%n", " ");
+        System.out.printf("%8s |%n", " ");
     }
     
 }

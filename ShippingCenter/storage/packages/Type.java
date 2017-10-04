@@ -15,9 +15,10 @@ public enum Type
     //PACKET ("Packet"),
     BOX ("Box"),
     CRATE ("Crate"),
-    DRUM ("Drum");
+    DRUM ("Drum"),
     //ROLL ("Roll"),
     //TUBE ("Tube");
+    NONE ("None");
     
     private String type;
     

@@ -32,13 +32,13 @@ public class Drum extends Package {
     
     public void print() {
         System.out.printf("| %8s" + divider, this.packageType);
-        super.print();
+        super.printForPackageType();
         System.out.printf("%10s" + divider, " ");
         System.out.printf("%7s" + divider, " ");
         System.out.printf("%17s" + divider, " ");
         System.out.printf("%10s" + divider, " ");
         System.out.printf("%15s" + divider, " ");
-        System.out.printf("%13s" + divider, " ");
+        System.out.printf("%17s" + divider, " ");
         System.out.printf("%8s" + divider, material);
         System.out.printf("%8d |%n", diameter);
     }

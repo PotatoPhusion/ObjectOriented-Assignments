@@ -32,14 +32,14 @@ public class Box extends Package {
     
     public void print() {
         System.out.printf("| %8s" + divider, this.packageType);
-        super.print();
+        super.printForPackageType();
         System.out.printf("%10s" + divider, " ");
         System.out.printf("%7s" + divider, " ");
         System.out.printf("%17d" + divider, largestDim);
         System.out.printf("%10d" + divider, volume);
         System.out.printf("%15s" + divider, " ");
-        System.out.printf("%13s" + divider, " ");
+        System.out.printf("%17s" + divider, " ");
         System.out.printf("%8s" + divider, " ");
-        System.out.printf("%8 |%n", " ");
+        System.out.printf("%8s |%n", " ");
     }
 }

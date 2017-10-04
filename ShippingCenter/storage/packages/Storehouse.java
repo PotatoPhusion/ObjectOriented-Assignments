@@ -156,8 +156,6 @@ public class Storehouse {
         String type = null;
         String spec = null;
         String mc = null;
-        float w = 0f;
-        int v = 0;
         
         boolean success = false;
         
@@ -175,10 +173,170 @@ public class Storehouse {
             }
         }
         
-        if (type.equalsIgnoreCase("Envelope")) {
+        success = false;
+        while (!success) {
+            System.out.println("Enter the tracking number:");
             
+            tn = sc.nextLine();
+            if (!verifyTrackingNumber(tn, TRACKING_NUM_LENGTH)) {
+                System.out.println("That is not a valid tracking number.");
+            }
+            else {
+                success = true;
+            }
         }
         
+        success = false;
+        while (!success) {
+            System.out.println("Enter the specification (Fragile, Books, Catalogs, Do-not-Bend, n/a):");
+            
+            spec = sc.nextLine();
+            if (!verifySpecification(spec)) {
+                System.out.println("That is not a valid specification.");
+            }
+            else {
+                success = true;
+            }
+        }
+        
+        success = false;
+        while (!success) {
+            System.out.println("Enter the mailing class of the package (First, Priority, Retail, Ground, Metro):");
+            
+            mc = sc.nextLine();
+            if (!verifyMailingClass(mc)) {
+                System.out.println("That is not a valid mailing class.");
+            }
+            else {
+                success = true;
+            }
+        }
+        
+        
+        
+        if (type.equalsIgnoreCase("Envelope")) {
+            int height = 0;
+            int width = 0;
+            
+            success = false;
+            while (!success) {
+                System.out.println("Enter the height (in inches) of the envelope:");
+                
+                if (sc.hasNextInt()) {
+                    height = sc.nextInt();
+                    if (height <= 0) {
+                        System.out.println("Height cannot be negative or zero.");
+                    }
+                    else {
+                        success = true;
+                    }
+                }
+                else {
+                    System.out.println("That is not whole number.");
+                    sc.nextLine();      // clear buffer
+                }
+            }
+            
+            success = false;
+            while (!success) {
+                System.out.println("Enter the width (in inches) of the envelope:");
+                
+                if (sc.hasNextInt()) {
+                    width = sc.nextInt();
+                    if (width <= 0) {
+                        System.out.println("Width cannot be negative or zero.");
+                    }
+                    else {
+                        success = true;
+                    }
+                }
+                else {
+                    System.out.println("That is not whole number.");
+                    sc.nextLine();      // clear buffer
+                }
+            }
+            
+            return new Envelope(tn, spec, mc, height, width);
+        }
+        else if (type.equalsIgnoreCase("Box")) {
+            int largestDim = 0;
+            int volume = 0;
+            
+            success = false;
+            while (!success) {
+                System.out.println("Enter the largest dimension (in inches) of the box:");
+                
+                if (sc.hasNextInt()) {
+                    largestDim = sc.nextInt();
+                    if (largestDim <= 0) {
+                        System.out.println("Largest dimension cannot be negative or zero.");
+                    }
+                    else {
+                        success = true;
+                    }
+                }
+                else {
+                    System.out.println("That is not whole number.");
+                    sc.nextLine();      // clear buffer
+                }
+            }
+            
+            success = false;
+            while (!success) {
+                System.out.println("Enter the volume (in cubic inches) of the box:");
+                
+                if (sc.hasNextInt()) {
+                    volume = sc.nextInt();
+                    if (volume <= 0) {
+                        System.out.println("Volume cannot be negative or zero.");
+                    }
+                    else {
+                        success = true;
+                    }
+                }
+                else {
+                    System.out.println("That is not whole number.");
+                    sc.nextLine();      // clear buffer
+                }
+            }
+            
+            return new Box(tn, spec, mc, largestDim, volume);
+        }
+        else if (type.equalsIgnoreCase("Crate")) {
+            float maxLoadWeight = 0f;
+            String content = null;
+            
+            success = false;
+            while (!success) {
+                System.out.println("Enter the maximum load weight (in pounds) of the crate:");
+                
+                if (sc.hasNextFloat()) {
+                    maxLoadWeight = sc.nextFloat();
+                    if (maxLoadWeight <= 0) {
+                        System.out.println("Load weight cannot be negative or zero.");
+                    }
+                    else {
+                        success = true;
+                    }
+                }
+                else {
+                    System.out.println("That is not number.");
+                    sc.nextLine();      // clear buffer
+                }
+            }
+            
+            System.out.println("Enter the contents of the crate:");
+            
+            content = sc.nextLine();
+            
+            return new Crate(tn, spec, mc, maxLoadWeight, content);
+        }
+        else if (type.equalsIgnoreCase("Drum")) {
+            
+        }
+        else {
+            return new Package(tn, spec, mc);
+        }
         return new Package();
     }
     
@@ -221,7 +379,7 @@ public class Storehouse {
         
         while (!success) {
             
-            System.out.println("Enter the tracking number of the package you want to delete:");
+            System.out.println("Enter the tracking number of the package you want to search for:");
             
             tn = sc.nextLine();
             if (!verifyTrackingNumber(tn, 5)) {
