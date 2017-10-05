@@ -2,25 +2,14 @@
 dependency1.from=TransactionHistory
 dependency1.to=Transaction
 dependency1.type=UsesDependency
-<<<<<<< HEAD
-objectbench.height=155
+objectbench.height=137
 objectbench.width=556
 package.divider.horizontal=0.6002132196162047
-package.divider.vertical=0.6375838926174496
-package.editor.height=278
-package.editor.width=844
-package.editor.x=344
-package.editor.y=396
-=======
-objectbench.height=137
-objectbench.width=934
-package.divider.horizontal=0.6
 package.divider.vertical=0.6778523489932886
 package.editor.height=296
 package.editor.width=844
-package.editor.x=2873
-package.editor.y=546
->>>>>>> faef00e5763614e0c56d61e8552b5727ccaae499
+package.editor.x=100
+package.editor.y=100
 package.frame.height=547
 package.frame.width=974
 package.numDependencies=1
@@ -38,23 +27,13 @@ target1.showInterface=false
 target1.type=ClassTarget
 target1.typeParameters=
 target1.width=100
-<<<<<<< HEAD
-target1.x=10
-target1.y=80
-=======
 target1.x=200
 target1.y=20
->>>>>>> faef00e5763614e0c56d61e8552b5727ccaae499
 target2.height=50
 target2.name=TransactionHistory
 target2.showInterface=false
 target2.type=ClassTarget
 target2.typeParameters=
 target2.width=140
-<<<<<<< HEAD
-target2.x=260
-target2.y=100
-=======
 target2.x=390
 target2.y=20
->>>>>>> faef00e5763614e0c56d61e8552b5727ccaae499

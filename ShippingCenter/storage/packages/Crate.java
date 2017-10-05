@@ -9,6 +9,9 @@ package storage.packages;
  */
 public class Crate extends Package {
 
+    private final String divider = " | ";
+    private final String packageType = "Crate";
+    
     private final float maxLoadWeight;
     private final String content;
     
@@ -43,4 +46,25 @@ public class Crate extends Package {
         return this.content;
     }
     
+    /**
+     * Prints out the Crate object
+     */
+    public void print() {
+        String fContent = content;
+        if (content.length() > 17) {
+            fContent = content.substring(0, 13);
+            fContent = fContent + "...";
+        }
+        
+        System.out.printf("| %8s" + divider, this.packageType);
+        super.printForPackageType();
+        System.out.printf("%10s" + divider, " ");
+        System.out.printf("%7s" + divider, " ");
+        System.out.printf("%17s" + divider, " ");
+        System.out.printf("%10s" + divider, " ");
+        System.out.printf("%15f" + divider, maxLoadWeight);
+        System.out.printf("%17s" + divider, fContent);
+        System.out.printf("%8s" + divider, " ");
+        System.out.printf("%8s |%n", " ");
+    }
 }

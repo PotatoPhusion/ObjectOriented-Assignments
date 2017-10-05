@@ -9,6 +9,9 @@ package storage.packages;
  */
 public class Envelope extends Package {
     
+    private final String divider = " | ";
+    private final String packageType = "Envelope";
+    
     private final int height;
     private final int width;
     
@@ -41,5 +44,21 @@ public class Envelope extends Package {
      */
     public int getWidth() {
         return this.width;
+    }
+    
+    /**
+     * Prints out the Envelope object
+     */
+    public void print() {
+        System.out.printf("| %8s" + divider, this.packageType);
+        super.printForPackageType();
+        System.out.printf("%10d" + divider, this.height);
+        System.out.printf("%7d" + divider, this.width);
+        System.out.printf("%17s" + divider, " ");
+        System.out.printf("%10s" + divider, " ");
+        System.out.printf("%15s" + divider, " ");
+        System.out.printf("%17s" + divider, " ");
+        System.out.printf("%8s" + divider, " ");
+        System.out.printf("%8s |%n", " ");
     }
 }

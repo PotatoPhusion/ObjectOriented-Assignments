@@ -25,7 +25,7 @@ public class Customer extends User implements Serializable {
     public Customer(String firstName, String lastName, String phoneNumber, String address) {
 
         // FIXME: I am not done by any means.
-        super(100000, firstName, lastName);
+        super(firstName, lastName);
         this.phoneNumber = phoneNumber;
         this.address = address;
     }
@@ -41,21 +41,17 @@ public class Customer extends User implements Serializable {
      */
     public Customer(int userID, String firstName, String lastName,
                     String phoneNumber, String address) {       
-        super(userID, firstName, lastName);
+        super(firstName, lastName);
         this.phoneNumber = phoneNumber;
         this.address = address;
     }
 
-<<<<<<< HEAD
-    public String getPhone() {
-=======
     /**
      * Accessor for the phone number of a customer.
      * 
      * @return the phone number of the customer.
      */
     public String getPhoneNumber() {
->>>>>>> faef00e5763614e0c56d61e8552b5727ccaae499
         return this.phoneNumber;
     }
     
@@ -66,5 +62,20 @@ public class Customer extends User implements Serializable {
      */
     public String getAddress() {
         return this.address;
+    }
+    
+    /**
+     * Update the user information for Customer
+     * 
+     * @param firstName first name of Customer
+     * @param lastName last name of Customer
+     * @param phoneNumber phone number of Customer
+     * @param address address of the Customer
+     *
+     */
+    public void updateUserInfo(String firstName, String lastName, String phoneNumber, String address) {
+        super.updateUserInfo(firstName, lastName);
+        this.phoneNumber = phoneNumber;
+        this.address = address;
     }
 }

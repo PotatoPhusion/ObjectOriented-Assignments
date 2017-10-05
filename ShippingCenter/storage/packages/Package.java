@@ -1,12 +1,16 @@
-
 /**
+ * Package class is the base class for all packages.
+ * 
  * @author Cullen Sturdivant
  * @version 1.1, 09/19/2017
  */
 package storage.packages;
 
-public class Package implements Comparable<Package> {
-
+public class Package implements Comparable {
+    
+    private final String divider = " | ";
+    private final String packageType = "No Type";
+    
     private String trackingNumber;
     private String specification;
     private String mailingClass;
@@ -37,18 +41,6 @@ public class Package implements Comparable<Package> {
     }
     
     /**
-     * Supposed to sort the packages but probably doesn't even work.
-     * 
-     * @param P which is the package
-     * 
-     * @return the sorted packages
-     */
-    public int compareTo(Package P) {
-        String pNum = ((Package)P).trackingNumber;
-        return trackingNumber.compareTo(pNum);
-    }
-    
-    /**
      * Accessor for the Tracking Number.
      * 
      * @return the tracking number of a package.
@@ -73,5 +65,38 @@ public class Package implements Comparable<Package> {
      */
     public String getMailingClass() {
         return this.mailingClass;
+    }
+    
+    /**
+     * Prints the Package types: tracking spec, and mailing class
+     */
+    public void printForPackageType() {
+        System.out.printf("%10s" + divider, this.trackingNumber);
+        System.out.printf("%13s" + divider, this.specification);
+        System.out.printf("%11s" + divider, this.mailingClass);
+    }
+    
+    /**
+     * Prints out the packages
+     */
+    public void print() {
+        System.out.printf("| %8s" + divider, this.packageType);
+        printForPackageType();
+        System.out.printf("%10s" + divider, " ");
+        System.out.printf("%7s" + divider, " ");
+        System.out.printf("%17s" + divider, " ");
+        System.out.printf("%10s" + divider, " ");
+        System.out.printf("%15s" + divider, " ");
+        System.out.printf("%17s" + divider, " ");
+        System.out.printf("%8s" + divider, " ");
+        System.out.printf("%8s |%n", " ");
+    }
+    
+    /**
+     * Compares the packages tracking numbers and sorts them
+     */
+    public int compareTo(Object pack) {
+        String track = ((Package)pack).getTrackingNumber();
+        return this.getTrackingNumber().compareTo(track);
     }
 }

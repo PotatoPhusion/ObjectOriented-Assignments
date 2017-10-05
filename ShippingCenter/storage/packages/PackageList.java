@@ -7,14 +7,17 @@ package storage.packages;
 
 import java.util.Scanner;
 import java.util.ArrayList;
-import storage.packages.Package;
+import java.util.Collections;
 
 public class PackageList  {
 
-    private final String line = "--------------------------------------------" +
-                                "---------------------------------";
-    private final String header = "| TRACKING # |   TYPE   | SPECIFICATION | " +
-                                  "   CLASS    |   WEIGHT   | VOLUME |";
+    private final String line = "------------------------------------------------" +
+                                "------------------------------------------------" +
+                                "------------------------------------------------" +
+                                "-----------------------";
+    private final String header = "|   TYPE   | TRACKING # | SPECIFICATION | " +
+                                  "   CLASS    |   HEIGHT   |  WIDTH  | LARGEST DIMENSION | " +
+                                  "  VOLUME   | MAX LOAD WEIGHT |      CONTENT      | MATERIAL | DIAMETER |";
     private final String divider = " | ";
 
     private static ArrayList<Package> packages;
@@ -44,9 +47,7 @@ public class PackageList  {
         System.out.println(line);
 
         for (Package pack : packages) {
-            System.out.printf("| %10s" + divider, pack.getTrackingNumber());
-            System.out.printf("%13s" + divider, pack.getSpecification());
-            System.out.printf("%11s" + " |", pack.getMailingClass());
+            pack.print();
         }
 
         System.out.println(line);
@@ -77,6 +78,7 @@ public class PackageList  {
      */
     public void addPackage(Package pack) {
         packages.add(pack);
+        Collections.sort(this.packages);
     }
 
     /**
