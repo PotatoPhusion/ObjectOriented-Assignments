@@ -5,9 +5,14 @@ import java.io.IOException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.util.Scanner;
+<<<<<<< HEAD
+import java.io.FileOutputStream;
+import java.io.ObjectOutputStream;
+=======
 import java.util.Date;
 import java.text.SimpleDateFormat;
 import java.text.ParseException;
+>>>>>>> 76d9a452d4777b093251ca0072aa91ec862bcf50
 
 import storage.users.*;
 import storage.transactions.*;
@@ -832,6 +837,11 @@ public class Storehouse {
      * @param the PackageList to be saved to a file.
      */
     private static void exit(PackageList packages) {
+        FileOutputStream fos = new FileOutputStream("Shipping.bin");
+        ObjectOutputStream oos = new ObjectOutputStream(fos);
         
-    }
+        for (int i = 0; i < packages.length(); i++){
+            oos.writeObject(packages.storehouse && packages.users && packages.history);
+        }
+}
 }
