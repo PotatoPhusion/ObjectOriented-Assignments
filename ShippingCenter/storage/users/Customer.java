@@ -66,6 +66,15 @@ public class Customer extends User implements Serializable {
         return this.address;
     }
     
+    /**
+     * Update the user information for Customer
+     * 
+     * @param firstName first name of Customer
+     * @param lastName last name of Customer
+     * @param phoneNumber phone number of Customer
+     * @param address address of the Customer
+     *
+     */
     public void updateUserInfo(String firstName, String lastName, String phoneNumber, String address) {
         super.updateUserInfo(firstName, lastName);
         this.phoneNumber = phoneNumber;

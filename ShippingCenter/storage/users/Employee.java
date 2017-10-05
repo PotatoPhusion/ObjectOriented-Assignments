@@ -63,6 +63,15 @@ public class Employee extends User implements Serializable {
         return this.ban;
     }
     
+    /**
+     * Update the user information for Employee
+     * 
+     * @param firstName first name of user
+     * @param lastName last name of user
+     * @param ssn social security number
+     * @param salary salary of the employee
+     * @param ban the bank account number
+     */
     public void updateUserInfo(String firstName, String lastName,
                                int ssn, float salary, int ban) {
         super.updateUserInfo(firstName, lastName);
@@ -70,6 +79,7 @@ public class Employee extends User implements Serializable {
         this.monthlySalary = salary;
         this.ban = ban;
     }
+<<<<<<< HEAD
     
     public void print() {
         System.out.printf("| %12s" + divider, "Employee");
@@ -81,4 +91,6 @@ public class Employee extends User implements Serializable {
         System.out.printf("%11d |", ban);
     }
     
+=======
+>>>>>>> 3af82bc8366c71188a942e5d506a1c97726556f2
 }

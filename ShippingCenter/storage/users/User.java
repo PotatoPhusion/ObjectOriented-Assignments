@@ -78,12 +78,24 @@ public abstract class User implements Comparable, Serializable {
         return fullName;
     }
     
+    /**
+     * Updates the user information 
+     * 
+     * @param firstName first name of user
+     * @param lastName last name of user
+     */
     public void updateUserInfo(String firstName, String lastName) {
         this.firstName = firstName;
         this.lastName = lastName;
     }
     
-    
+    /**
+     * Compares the users with one another
+     * 
+     * @param otherUser, object being compared
+     * 
+     * @return the first name after it is compared otherwise lastName. 
+     */
     public int compareTo(Object otherUser) {
         String otherName = ((User)otherUser).getLastName();
         int lastNameTest = this.getLastName().compareTo(otherName);

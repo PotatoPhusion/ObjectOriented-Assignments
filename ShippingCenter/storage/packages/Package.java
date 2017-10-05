@@ -1,11 +1,11 @@
-package storage.packages;
-
 /**
  * Package class is the base class for all packages.
  * 
  * @author Cullen Sturdivant
  * @version 1.1, 09/19/2017
  */
+package storage.packages;
+
 public class Package implements Comparable {
     
     private final String divider = " | ";
@@ -67,12 +67,18 @@ public class Package implements Comparable {
         return this.mailingClass;
     }
     
+    /**
+     * Prints the Package types: tracking spec, and mailing class
+     */
     public void printForPackageType() {
         System.out.printf("%10s" + divider, this.trackingNumber);
         System.out.printf("%13s" + divider, this.specification);
         System.out.printf("%11s" + divider, this.mailingClass);
     }
     
+    /**
+     * Prints out the packages
+     */
     public void print() {
         System.out.printf("| %8s" + divider, this.packageType);
         printForPackageType();
@@ -86,6 +92,9 @@ public class Package implements Comparable {
         System.out.printf("%8s |%n", " ");
     }
     
+    /**
+     * Compares the packages tracking numbers and sorts them
+     */
     public int compareTo(Object pack) {
         String track = ((Package)pack).getTrackingNumber();
         return this.getTrackingNumber().compareTo(track);

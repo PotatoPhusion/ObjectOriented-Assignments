@@ -1,6 +1,7 @@
 package storage.transactions;
 
 import java.util.Date;
+
 import java.io.Serializable;
 
 /**
@@ -9,7 +10,9 @@ import java.io.Serializable;
  * @author Cullen Sturdivant
  * @version 1.0, 10/2/2017
  */
+
 public class Transaction implements Serializable{
+
     
     private int customerID;
     private String trackingNumber;
@@ -17,7 +20,7 @@ public class Transaction implements Serializable{
     private Date deliveryDate;
     private float shippingCost;
     private int employeeID;
-    
+   
     /**
      * Constructor for a Transaction.
      * 
@@ -41,7 +44,7 @@ public class Transaction implements Serializable{
     public int getCustomerID() {
         return this.customerID;
     }
-    
+
     /**
      * Accessor for the tracking number of the package.
      * 
@@ -50,7 +53,7 @@ public class Transaction implements Serializable{
     public String getTrackingNumber() {
         return this.trackingNumber;
     }
-    
+
     /**
      * Accessor for the shipping date.
      * 
@@ -68,7 +71,7 @@ public class Transaction implements Serializable{
     public Date getDeliveryDate() {
         return this.deliveryDate;
     }
-    
+
     /**
      * Accessor for the shipping cost.
      * 

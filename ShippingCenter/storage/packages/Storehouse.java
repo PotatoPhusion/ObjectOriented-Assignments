@@ -49,6 +49,7 @@ public class Storehouse {
             System.out.println("9.  Show completed shipping transaction.");
             System.out.println("10. Exit program.");
 
+
             inMenu = true;
 
             while (inMenu) {
@@ -135,6 +136,7 @@ public class Storehouse {
         }
         return false;
     }
+    
     /**
      * Verifies if the supplied string matches an appropriate specification.
      * 
@@ -345,8 +347,6 @@ public class Storehouse {
                 success = true;
             }
         }
-        
-        
         
         if (type.equalsIgnoreCase("Envelope")) {
             int height = 0;

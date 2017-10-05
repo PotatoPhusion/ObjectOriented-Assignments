@@ -46,6 +46,9 @@ public class Envelope extends Package {
         return this.width;
     }
     
+    /**
+     * Prints out the Envelope object
+     */
     public void print() {
         System.out.printf("| %8s" + divider, this.packageType);
         super.printForPackageType();
