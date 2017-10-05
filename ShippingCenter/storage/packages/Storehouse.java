@@ -5,6 +5,9 @@ import java.io.IOException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.util.Scanner;
+import java.util.Date;
+import java.text.SimpleDateFormat;
+import java.text.ParseException;
 
 import storage.users.*;
 import storage.transactions.*;
@@ -91,17 +94,25 @@ public class Storehouse {
                          
                 case 6:  User newUser = addUserPrompt();
                          users.addUser(newUser);
+                         break;
                 
                 case 7:  updateUserInfo(users);
+                         break;
                 
-                case 8:  
-                         Transaction trans = addTransactionPrompt();
-                         history.addTransaction(trans);
+                case 8:  if (users.size() < 2) {
+                             System.out.println("Not enought users to perform a transaction.");
+                         }
+                         else {
+                             Transaction trans = addTransactionPrompt(users, storehouse);
+                             history.addTransaction(trans);
+                         }
+                         break;
                 
                 case 9:  history.print();
                          break;
                          
                 case 10: exit = true;
+                         break;
             }
         }
     }
@@ -172,11 +183,140 @@ public class Storehouse {
         return false;
     }
     
+    private static Transaction addTransactionPrompt(UserList users, PackageList storehouse) {
+        int customerID = 0;
+        String trackingNumber = null;
+        Date shippingDate = new Date();
+        Date deliveryDate = new Date();
+        float shippingCost = 0f;;
+        int employeeID = 0;
+        
+        boolean foundUser = false;
+        boolean success = false;
+        
+        Scanner sc = new Scanner(System.in);
+        
+        SimpleDateFormat dateFormat = new SimpleDateFormat("MM-dd-yyyy");
+        
+        while (!success) {
+            System.out.println("Enter the ID of the customer:");
+            
+            if (sc.hasNextInt()) {
+                customerID = sc.nextInt();
+                
+                for (int i = 0; i < users.size(); i++) {
+                    User u = users.get(i);
+                    if (customerID == u.getUserID()) {
+                        foundUser = true;
+                    }
+                }
+                if (!foundUser) {
+                    System.out.println("User not found!");
+                }
+                else {
+                    success = true;
+                }
+            }
+        }
+        
+        success = false;
+        while (!success) {
+            System.out.println("Enter the ID of the employee:");
+            
+            if (sc.hasNextInt()) {
+                employeeID = sc.nextInt();
+                
+                for (int i = 0; i < users.size(); i++) {
+                    User u = users.get(i);
+                    if (employeeID == u.getUserID()) {
+                        foundUser = true;
+                    }
+                }
+                if (!foundUser) {
+                    System.out.println("User not found!");
+                }
+                else {
+                    success = true;
+                }
+            }
+        }
+        
+        success = false;
+        while (!success) {
+            System.out.println("Enter the tracking number of the package:");
+            
+            trackingNumber = sc.nextLine();
+            if (!verifyTrackingNumber(trackingNumber, TRACKING_NUM_LENGTH)) {
+                for (int i = 0; i < storehouse.size(); i++) {
+                    Package p = storehouse.get(i);
+                    if (trackingNumber.equals(p.getTrackingNumber())) {
+                        success = true;
+                    }
+                }
+                if (!success) {
+                    System.out.println("Tracking number not found");
+                }
+            }
+            else {
+                System.out.println("Invalid input");
+            }
+        }
+        
+        success = false;
+        while (!success) {
+            System.out.println("Enter the shipping date with the following format (mm-dd-yyyy):");
+            
+            String input = sc.nextLine();
+            try {
+                shippingDate = dateFormat.parse(input);
+                success = true;
+            }
+            catch (ParseException e) {
+                System.out.println("That is not a valid date.");
+            }
+        }
+        
+        success = false;
+        while (!success) {
+            System.out.println("Enter the delivery date with the following format (mm-dd-yyyy):");
+            
+            String input = sc.nextLine();
+            try {
+                deliveryDate = dateFormat.parse(input);
+                success = true;
+            }
+            catch (ParseException e) {
+                System.out.println("That is not a valid date.");
+            }
+        }
+        
+        success = false;
+        while (!success) {
+            System.out.println("Enter the shipping cost:");
+            
+            if (sc.hasNextFloat()) {
+                shippingCost = sc.nextFloat();
+                if (shippingCost < 0f) {
+                    System.out.println("Shipping cost cannot be negative");
+                }
+                else {
+                    success = true;
+                }
+            }
+            else {
+                System.out.println("That is not a valid entry.");
+                sc.nextLine();
+            }
+        }
+        storehouse.deletePackage(trackingNumber);
+        return new Transaction(customerID, trackingNumber, shippingDate, deliveryDate, shippingCost, employeeID);
+    }
+    
     private static void updateUserInfo(UserList users) {
         String firstName = null;
         String lastName = null;
         int id = 0;
-        User user;
+        User user = new User();
         
         boolean success = false;
         boolean foundUser = false;
@@ -194,7 +334,8 @@ public class Storehouse {
                     foundUser = true;
                 }
             }
-            System.out.println("User not found!");
+            if (!foundUser)
+                System.out.println("User not found!");
         }
         
         
