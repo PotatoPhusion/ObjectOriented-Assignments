@@ -5,14 +5,16 @@ import java.io.IOException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.util.Scanner;
-<<<<<<< HEAD
+
 import java.io.FileOutputStream;
 import java.io.ObjectOutputStream;
-=======
+import java.io.FileInputStream;
+import java.io.ObjectInputStream;
+
 import java.util.Date;
 import java.text.SimpleDateFormat;
 import java.text.ParseException;
->>>>>>> 76d9a452d4777b093251ca0072aa91ec862bcf50
+
 
 import storage.users.*;
 import storage.transactions.*;
@@ -29,6 +31,10 @@ import storage.transactions.*;
 public class Storehouse {
 // intro to program
 
+    private static String packageFilename = "packages.ser";
+    private static String transactionsFilename = "transactions.ser";
+    private static String usersFilename = "Users.ser";
+
     private static final int TRACKING_NUM_LENGTH = 5;
 
     public static void main(String[] args) {
@@ -36,6 +42,79 @@ public class Storehouse {
         PackageList storehouse = new PackageList();
         UserList users = new UserList();
         TransactionHistory history = new TransactionHistory();
+        
+        FileInputStream file;
+        ObjectInputStream in;
+        
+        // Deserialization
+        try
+        {   
+            // Reading the object from a file
+            file = new FileInputStream(packageFilename);
+            in = new ObjectInputStream(file);
+             
+            // Method for deserialization of object
+            storehouse = (PackageList)in.readObject();
+             
+            in.close();
+            file.close();
+        }
+         
+        catch(IOException ex)
+        {
+            System.out.println("IOException is caught");
+        }
+         
+        catch(ClassNotFoundException ex)
+        {
+            System.out.println("ClassNotFoundException is caught");
+        }
+        
+        try
+        {   
+            // Reading the object from a file
+            file = new FileInputStream(transactionsFilename);
+            in = new ObjectInputStream(file);
+             
+            // Method for deserialization of object
+            history = (TransactionHistory)in.readObject();
+             
+            in.close();
+            file.close();
+        }
+         
+        catch(IOException ex)
+        {
+            System.out.println("IOException is caught");
+        }
+         
+        catch(ClassNotFoundException ex)
+        {
+            System.out.println("ClassNotFoundException is caught");
+        }
+        
+        try
+        {   
+            // Reading the object from a file
+            file = new FileInputStream(usersFilename);
+            in = new ObjectInputStream(file);
+             
+            // Method for deserialization of object
+            users = (UserList)in.readObject();
+             
+            in.close();
+            file.close();
+        }
+         
+        catch(IOException ex)
+        {
+            System.out.println("IOException is caught");
+        }
+         
+        catch(ClassNotFoundException ex)
+        {
+            System.out.println("ClassNotFoundException is caught");
+        }
         
         boolean exit;
         boolean inMenu;
@@ -836,12 +915,71 @@ public class Storehouse {
      * 
      * @param the PackageList to be saved to a file.
      */
-    private static void exit(PackageList packages) {
-        FileOutputStream fos = new FileOutputStream("Shipping.bin");
-        ObjectOutputStream oos = new ObjectOutputStream(fos);
+    private static void exit(PackageList packages, UserList users, TransactionHistory trans) {
+        FileOutputStream file;
+        ObjectOutputStream out;
         
-        for (int i = 0; i < packages.length(); i++){
-            oos.writeObject(packages.storehouse && packages.users && packages.history);
+        try
+        {   
+            //Saving of object in a file
+            file = new FileOutputStream(packageFilename);
+            out = new ObjectOutputStream(file);
+             
+            // Method for serialization of object
+            out.writeObject(packages);
+             
+            out.close();
+            file.close();
+             
+            System.out.println("Object has been serialized");
+ 
+        }
+         
+        catch(IOException ex)
+        {
+            System.out.println("IOException is caught");
+        }
+        
+        try
+        {   
+            //Saving of object in a file
+            file = new FileOutputStream(transactionsFilename);
+            out = new ObjectOutputStream(file);
+             
+            // Method for serialization of object
+            out.writeObject(trans);
+             
+            out.close();
+            file.close();
+             
+            System.out.println("Object has been serialized");
+ 
+        }
+         
+        catch(IOException ex)
+        {
+            System.out.println("IOException is caught");
+        }
+        
+        try
+        {   
+            //Saving of object in a file
+            file = new FileOutputStream(usersFilename);
+            out = new ObjectOutputStream(file);
+             
+            // Method for serialization of object
+            out.writeObject(users);
+             
+            out.close();
+            file.close();
+             
+            System.out.println("Object has been serialized");
+ 
+        }
+         
+        catch(IOException ex)
+        {
+            System.out.println("IOException is caught");
         }
 }
 }
