@@ -79,7 +79,6 @@ public class Employee extends User implements Serializable {
         this.monthlySalary = salary;
         this.ban = ban;
     }
-<<<<<<< HEAD
     
     public void print() {
         System.out.printf("| %12s" + divider, "Employee");
@@ -90,7 +89,4 @@ public class Employee extends User implements Serializable {
         System.out.printf("$%10.2f" + divider, monthlySalary);
         System.out.printf("%11d |", ban);
     }
-    
-=======
->>>>>>> 3af82bc8366c71188a942e5d506a1c97726556f2
 }

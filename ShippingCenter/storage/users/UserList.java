@@ -43,7 +43,7 @@ public class UserList implements Serializable {
         }
     }
     
-<<<<<<< HEAD
+
     public void showAll() {
         System.out.println(line);
         System.out.println(header);
@@ -55,13 +55,19 @@ public class UserList implements Serializable {
         System.out.println(line);
     }
     
-=======
+    public int size() {
+        return users.size();
+    }
+    
+    public User get(int i) {
+        return users.get(i);
+    }
+
     /**
      * Generates the user ID
      * 
-     * @param u, for you being the user
+     * @param u for you being the user
      */
->>>>>>> 3af82bc8366c71188a942e5d506a1c97726556f2
     private void generateUserID(User u) {
         if (u instanceof Employee) {
             int id = EMPLOYEE_ID_BASE + this.users.size();

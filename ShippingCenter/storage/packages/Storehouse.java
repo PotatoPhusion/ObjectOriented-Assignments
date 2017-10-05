@@ -92,11 +92,14 @@ public class Storehouse {
                 case 6:  User newUser = addUserPrompt();
                          users.addUser(newUser);
                 
-                case 7:  
+                case 7:  updateUserInfo(users);
                 
                 case 8:  
+                         Transaction trans = addTransactionPrompt();
+                         history.addTransaction(trans);
                 
-                case 9:  
+                case 9:  history.print();
+                         break;
                          
                 case 10: exit = true;
             }
@@ -167,6 +170,125 @@ public class Storehouse {
             }
         }
         return false;
+    }
+    
+    private static void updateUserInfo(UserList users) {
+        String firstName = null;
+        String lastName = null;
+        int id = 0;
+        User user;
+        
+        boolean success = false;
+        boolean foundUser = false;
+        
+        Scanner sc = new Scanner(System.in);
+        
+        System.out.println("Enter the UserID of the user whose info you want to change:");
+        if (sc.hasNextInt()) {
+            id = sc.nextInt();
+            
+            for (int i = 0; i < users.size(); i++) {
+                User u = users.get(i);
+                if (id == u.getUserID()) {
+                    user = u;
+                    foundUser = true;
+                }
+            }
+            System.out.println("User not found!");
+        }
+        
+        
+        if (foundUser) {
+            System.out.println("Enter the user's first name:");
+            
+            firstName = sc.nextLine();
+            
+            System.out.println("Enter the user's last name:");
+            
+            lastName = sc.nextLine();
+            
+            if (user instanceof Customer) {
+                Customer krustomer = (Customer)user;
+                String pn = null;
+                String address = null;
+                
+                System.out.println("Enter your phone number:");
+                pn = sc.nextLine();
+                
+                System.out.println("Enter your address:");
+                address = sc.nextLine();
+                
+                krustomer.updateUserInfo(firstName, lastName, pn, address);
+            }
+            else {
+                Employee squidward = (Employee)user;
+                int ssn = 0;
+                float salary = 0f;
+                int ban = 0;
+                
+                success = false;
+                
+                while (!success) {
+                    System.out.println("Enter the employee's Social Security Number:");
+                    
+                    if(sc.hasNextInt()) {
+                        ssn = sc.nextInt();
+                        if (String.valueOf(ssn).length() != 9) {
+                            System.out.println("That is not an SSN");
+                            sc.nextLine();
+                        }
+                        else {
+                            success = true;
+                        }
+                    }
+                    else {
+                        System.out.println("That is not an SSN");
+                        sc.nextLine();
+                    }
+                }
+                
+                success = false;
+                while (!success) {
+                    System.out.println("Enter the monthly salary of the employee:");
+                    
+                    if (sc.hasNextFloat()) {
+                        salary = sc.nextFloat();
+                        if (salary <= 0f) {
+                            System.out.println("Salary cannot be negative or zero");
+                            sc.nextLine();
+                        }
+                        else {
+                            success = true;
+                        }
+                    }
+                    else {
+                        System.out.println("This is not a valid input.");
+                        sc.nextLine();
+                    }
+                }
+                
+                success = false;
+                while (!success) {
+                    System.out.println("Enter the employee's Bank Account Number:");
+                    
+                    if(sc.hasNextInt()) {
+                        ban = sc.nextInt();
+                        if (String.valueOf(ban).length() != 10) {
+                            System.out.println("That is not an BAN");
+                            sc.nextLine();
+                        }
+                        else {
+                            success = true;
+                        }
+                    }
+                    else {
+                        System.out.println("That is not an BAN");
+                        sc.nextLine();
+                    }
+                }
+                squidward.updateUserInfo(firstName, lastName, ssn, salary, ban);
+            }
+        }
     }
     
     private static User addUserPrompt() {

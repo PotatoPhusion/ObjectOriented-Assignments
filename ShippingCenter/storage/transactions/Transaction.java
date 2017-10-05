@@ -86,7 +86,7 @@ public class Transaction implements Serializable{
      * 
      * @return the ID of the employee whom completed the transaction.
      */
-    public int employeeID() {
+    public int getEmployeeID() {
         return this.employeeID;
     }
 }
