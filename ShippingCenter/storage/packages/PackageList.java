@@ -14,7 +14,7 @@ public class PackageList {
     private final String line = "------------------------------------------------" +
                                 "------------------------------------------------" +
                                 "------------------------------------------------" +
-                                "-----------------------";
+                                "---------------------------";
     private final String header = "|   TYPE   | TRACKING # | SPECIFICATION | " +
                                   "   CLASS    |   HEIGHT   |  WIDTH  | LARGEST DIMENSION | " +
                                   "  VOLUME   | MAX LOAD WEIGHT |      CONTENT      | MATERIAL | DIAMETER |";

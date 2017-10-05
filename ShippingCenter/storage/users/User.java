@@ -10,6 +10,8 @@ import java.io.Serializable;
  */
 public abstract class User implements Comparable, Serializable {
 
+    private final String divider = " | ";
+    
     private int userID;
     private String firstName;
     private String lastName;
@@ -93,5 +95,23 @@ public abstract class User implements Comparable, Serializable {
         else {
             return lastNameTest;
         }
+    }
+    
+    public void print() {
+        String fFirstName = this.firstName;
+        String fLastName = this.lastName;
+        if (this.firstName.length() > 12) {
+            fFirstName = this.firstName.substring(0, 9);
+            fFirstName = fFirstName + "...";
+        }
+        if (this.lastName.length() > 13) {
+            fLastName = this.lastName.substring(0, 10);
+            fLastName = fLastName + "...";
+        }
+        
+        
+        System.out.printf("%7d" + divider, userID);
+        System.out.printf("%12s" + divider, fFirstName);
+        System.out.printf("%13s" + divider, fLastName);
     }
 }

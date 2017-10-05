@@ -27,6 +27,7 @@ public class Storehouse {
 
         PackageList storehouse = new PackageList();
         UserList users = new UserList();
+        TransactionHistory history = new TransactionHistory();
         
         boolean exit;
         boolean inMenu;
@@ -71,10 +72,31 @@ public class Storehouse {
                 
                 case 1:  storehouse.showAll();
                          break;
+                         
                 case 2:  Package pack = addPackagePrompt();
                          storehouse.addPackage(pack);
                          break;
-                case 3:
+                         
+                case 3:  String tn = deletePrompt();
+                         storehouse.deletePackage(tn);
+                         break;
+                         
+                case 4:  String track = searchPrompt();
+                         storehouse.searchPackages(track);
+                         break;
+                         
+                case 5:  users.showAll();
+                         break;
+                         
+                case 6:  User newUser = addUserPrompt();
+                         users.addUser(newUser);
+                
+                case 7:  
+                
+                case 8:  
+                
+                case 9:  
+                         
                 case 10: exit = true;
             }
         }
@@ -143,6 +165,118 @@ public class Storehouse {
             }
         }
         return false;
+    }
+    
+    private static User addUserPrompt() {
+        String firstName = null;
+        String lastName = null;
+        String CorE = null;
+        
+        boolean success = false;
+        
+        Scanner sc = new Scanner(System.in);
+        
+        System.out.println("Enter the new user's first name:");
+        
+        firstName = sc.nextLine();
+        
+        System.out.println("Enter the new user's last name:");
+        
+        lastName = sc.nextLine();
+        
+        while (!success) {
+            System.out.println("Customer or Employee?");
+            
+            CorE = sc.nextLine();
+            if (CorE.equals("Customer") || CorE.equals("Employee")) {
+                success = true;
+            }
+            else {
+                System.out.println("That is not a valid option.");
+            }
+        }
+        
+        if (CorE.equals("Customer")) {
+            String pn = null;
+            String address = null;
+            
+            System.out.println("Enter your phone number:");
+            pn = sc.nextLine();
+            
+            System.out.println("Enter your address:");
+            address = sc.nextLine();
+            
+            return new Customer(firstName, lastName, pn, address);
+        }
+        else {
+            int ssn = 0;
+            float salary = 0f;
+            int ban = 0;
+            
+            success = false;
+            
+            while (!success) {
+                System.out.println("Enter the employee's Social Security Number:");
+                
+                if(sc.hasNextInt()) {
+                    ssn = sc.nextInt();
+                    if (String.valueOf(ssn).length() != 9) {
+                        System.out.println("That is not an SSN");
+                        sc.nextLine();
+                    }
+                    else {
+                        success = true;
+                    }
+                }
+                else {
+                    System.out.println("That is not an SSN");
+                    sc.nextLine();
+                }
+            }
+            
+            success = false;
+            while (!success) {
+                System.out.println("Enter the monthly salary of the employee:");
+                
+                if (sc.hasNextFloat()) {
+                    salary = sc.nextFloat();
+                    if (salary <= 0f) {
+                        System.out.println("Salary cannot be negative or zero");
+                        sc.nextLine();
+                    }
+                    else {
+                        success = true;
+                    }
+                }
+                else {
+                    System.out.println("This is not a valid input.");
+                    sc.nextLine();
+                }
+            }
+            
+            success = false;
+            while (!success) {
+                System.out.println("Enter the employee's Bank Account Number:");
+                
+                if(sc.hasNextInt()) {
+                    ban = sc.nextInt();
+                    if (String.valueOf(ban).length() != 10) {
+                        System.out.println("That is not an BAN");
+                        sc.nextLine();
+                    }
+                    else {
+                        success = true;
+                    }
+                }
+                else {
+                    System.out.println("That is not an BAN");
+                    sc.nextLine();
+                }
+            }
+            return new Employee(firstName, lastName, ssn, salary, ban);
+        }
+        
+        
     }
     
     /**
@@ -324,6 +458,7 @@ public class Storehouse {
                     sc.nextLine();      // clear buffer
                 }
             }
+            sc.nextLine();
             
             System.out.println("Enter the contents of the crate:");
             
@@ -332,12 +467,46 @@ public class Storehouse {
             return new Crate(tn, spec, mc, maxLoadWeight, content);
         }
         else if (type.equalsIgnoreCase("Drum")) {
+            String material = null;
+            int diameter = 0;
             
+            success = false;
+            while (!success) {
+                System.out.println("Enter the material of the drum (Plastic, Fiber):");
+                
+                material = sc.nextLine();
+                if (material.equals("Plastic") || material.equals("Fiber")) {
+                    success = true;
+                }
+                else {
+                    System.out.println("That is not a valid material");
+                }
+            }
+            
+            success = false;
+            while (!success) {
+                System.out.println("Enter the diameter (in inches) of the drum:");
+                
+                if (sc.hasNextInt()) {
+                    diameter = sc.nextInt();
+                    if (diameter <= 0) {
+                        System.out.println("Diameter cannot be negative or zero.");
+                    }
+                    else {
+                        success = true;
+                    }
+                }
+                else {
+                    System.out.println("That is not a whole number");
+                    sc.nextLine();
+                }
+            }
+            
+            return new Drum(tn, spec, mc, material, diameter);
         }
         else {
             return new Package(tn, spec, mc);
         }
-        return new Package();
     }
     
     /**

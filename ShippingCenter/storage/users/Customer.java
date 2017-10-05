@@ -10,6 +10,8 @@ import java.io.Serializable;
  */
 public class Customer extends User implements Serializable {
    
+    private final String divider = " | ";
+    
     private String phoneNumber;
     private String address;
     
@@ -68,5 +70,21 @@ public class Customer extends User implements Serializable {
         super.updateUserInfo(firstName, lastName);
         this.phoneNumber = phoneNumber;
         this.address = address;
+    }
+    
+    public void print() {
+        String fAddress = this.address;
+        if (fAddress.length() > 21) {
+            fAddress = this.address.substring(0, 17);
+            fAddress = fAddress + "...";
+        }
+        
+        System.out.printf("| %12s" + divider, "Customer");
+        super.print();
+        System.out.printf("%12s" + divider, phoneNumber);
+        System.out.printf("%21s" + divider,fAddress);
+        System.out.printf("%9d" + divider, " ");
+        System.out.printf("%10.2s" + divider, " ");
+        System.out.printf("%11s |%n", " ");
     }
 }

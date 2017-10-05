@@ -11,6 +11,14 @@ import java.io.Serializable;
  */
 public class UserList implements Serializable {
 
+    
+    private final String line = "--------------------------------------------" +
+                                "--------------------------------------------" +
+                                "--------------------------------------------";
+    private final String header = "| USER TYPE | USER ID |  FIRST NAME  | " + 
+                                  "  LAST NAME   | PHONE NUMBER | " +
+                                  "       ADDRESS        |    SSN    |   SALARY   |     BAN     |";
+    
     private final int CUSTOMER_ID_BASE = 100000;
     private final int EMPLOYEE_ID_BASE = 200000;
     
@@ -33,6 +41,17 @@ public class UserList implements Serializable {
         if (newUser.getUserID() == 0) {
             generateUserID(newUser);
         }
+    }
+    
+    public void showAll() {
+        System.out.println(line);
+        System.out.println(header);
+        System.out.println(line);
+        
+        for (User user : users) {
+            user.print();
+        }
+        System.out.println(line);
     }
     
     private void generateUserID(User u) {

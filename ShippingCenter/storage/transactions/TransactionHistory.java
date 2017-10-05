@@ -32,4 +32,8 @@ public class TransactionHistory implements Serializable {
     public void addTransaction(Transaction transaction) {
         transactionList.add(transaction);
     }
+    
+    public void print() {
+        
+    }
 }

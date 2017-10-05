@@ -12,6 +12,8 @@ public class Employee extends User implements Serializable {
     
     private final int EMPLOYEE_ID_BASE = 200000;
     
+    private final String divider = " | ";
+    
     private int ssn;                // Social Security Number
     private float monthlySalary;
     private int ban;                // Bank Account Number
@@ -67,6 +69,16 @@ public class Employee extends User implements Serializable {
         this.ssn = ssn;
         this.monthlySalary = salary;
         this.ban = ban;
+    }
+    
+    public void print() {
+        System.out.printf("| %12s" + divider, "Employee");
+        super.print();
+        System.out.printf("%12s" + divider, " ");
+        System.out.printf("%21s" + divider, " ");
+        System.out.printf("%9d" + divider, ssn);
+        System.out.printf("$%10.2f" + divider, monthlySalary);
+        System.out.printf("%11d |", ban);
     }
     
 }

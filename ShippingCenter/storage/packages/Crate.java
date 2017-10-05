@@ -43,7 +43,7 @@ public class Crate extends Package {
         System.out.printf("%7s" + divider, " ");
         System.out.printf("%17s" + divider, " ");
         System.out.printf("%10s" + divider, " ");
-        System.out.printf("%15f" + divider, maxLoadWeight);
+        System.out.printf("%15.2f" + divider, maxLoadWeight);
         System.out.printf("%17s" + divider, fContent);
         System.out.printf("%8s" + divider, " ");
         System.out.printf("%8s |%n", " ");
