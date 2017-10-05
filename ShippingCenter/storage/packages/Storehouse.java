@@ -217,6 +217,7 @@ public class Storehouse {
                     success = true;
                 }
             }
+            sc.nextLine();
         }
         
         success = false;
@@ -239,6 +240,7 @@ public class Storehouse {
                     success = true;
                 }
             }
+            sc.nextLine();
         }
         
         success = false;
