@@ -8,13 +8,19 @@ import java.io.Serializable;
  * @author Cullen Sturdivant
  * @version 1.0, 10/2/2017
  */
-public abstract class User implements Comparable, Serializable {
+public class User implements Comparable, Serializable {
 
     private final String divider = " | ";
     
     private int userID;
     private String firstName;
     private String lastName;
+    
+    public User() {
+        this.userID = 0;
+        this.firstName = null;
+        this.lastName = null;
+    }
     
     /**
      * Constructor for a user.

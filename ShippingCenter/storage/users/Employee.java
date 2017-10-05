@@ -81,12 +81,12 @@ public class Employee extends User implements Serializable {
     }
     
     public void print() {
-        System.out.printf("| %12s" + divider, "Employee");
+        System.out.printf("| %9s" + divider, "Employee");
         super.print();
         System.out.printf("%12s" + divider, " ");
         System.out.printf("%21s" + divider, " ");
         System.out.printf("%9d" + divider, ssn);
-        System.out.printf("$%10.2f" + divider, monthlySalary);
-        System.out.printf("%11d |", ban);
+        System.out.printf("$%9.2f" + divider, monthlySalary);
+        System.out.printf("%11d |%n", ban);
     }
 }

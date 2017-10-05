@@ -58,7 +58,7 @@ public class PackageList  {
      * 
      * @return the length of the PackageList
      */
-    public int length() {
+    public int size() {
         return packages.size();
     }
     

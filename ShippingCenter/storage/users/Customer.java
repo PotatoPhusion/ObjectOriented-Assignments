@@ -88,11 +88,11 @@ public class Customer extends User implements Serializable {
             fAddress = fAddress + "...";
         }
         
-        System.out.printf("| %12s" + divider, "Customer");
+        System.out.printf("| %9s" + divider, "Customer");
         super.print();
         System.out.printf("%12s" + divider, phoneNumber);
         System.out.printf("%21s" + divider,fAddress);
-        System.out.printf("%9d" + divider, " ");
+        System.out.printf("%9s" + divider, " ");
         System.out.printf("%10.2s" + divider, " ");
         System.out.printf("%11s |%n", " ");
     }
